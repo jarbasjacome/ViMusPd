@@ -390,7 +390,7 @@ void VimusMachineVitalino::draw()
                              //F5 no modo janela. mas não influencia no bug.
 
         this->numVoxels = BARRO_WIDTH*BARRO_HEIGHT*BARRO_DEPTH;
-        boost::xtime_get(&(this->xtimeRecomecar), boost::TIME_UTC);
+        boost::xtime_get(&(this->xtimeRecomecar), TIME_UTC);
         this->xtimeRecomecar.nsec += 700000000;
         boost::thread::sleep(this->xtimeRecomecar);
 	}

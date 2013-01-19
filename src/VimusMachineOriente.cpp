@@ -81,7 +81,7 @@ VimusMachineOriente::VimusMachineOriente(MyFreenectDevice* kin)
     audioSampler = new OpenALSamplerOriente();
 
     estado=ESTADO_CABECA_BAIXA;
-    boost::xtime_get(&(this->tempoCabecaBaixa), boost::TIME_UTC);
+    boost::xtime_get(&(this->tempoCabecaBaixa), TIME_UTC);
     kinectAngulo=0;
     kinect->setTiltDegrees(kinectAngulo);
     zoom=10.0f;
@@ -107,12 +107,12 @@ void VimusMachineOriente::update()
     }
 
     if(estado==ESTADO_APARECENDO){
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoAnteriorOpacidade.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoAnteriorOpacidade.sec)*1000;
 
         if(tempoPassadoMSegs>25) {
-            boost::xtime_get(&(this->tempoAnteriorOpacidade), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoAnteriorOpacidade), TIME_UTC);
             opacidade+=0.025;
             if(opacidade>1){
                 opacidade=1;
@@ -120,12 +120,12 @@ void VimusMachineOriente::update()
             }
         }
     } else if(estado==ESTADO_CONSTRUINDO){
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoAnteriorAudio.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoAnteriorAudio.sec)*1000;
 
         if(tempoPassadoMSegs>25) {
-            boost::xtime_get(&(this->tempoAnteriorAudio), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoAnteriorAudio), TIME_UTC);
             volume-=0.05;
             if(volume<0){
                 volume=0;
@@ -134,18 +134,18 @@ void VimusMachineOriente::update()
 
         if(audioSampler->getSecondOffset(0)==0){
             audioSampler->playSample(0);
-            boost::xtime_get(&(this->tempoAnteriorAudio), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoAnteriorAudio), TIME_UTC);
         }
 
         audioSampler->setGain(0, volume);
 
     } else if(estado==ESTADO_COMPLETA) {
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoAnteriorGiro.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoAnteriorGiro.sec)*1000;
 
         if(tempoPassadoMSegs>25) {
-            boost::xtime_get(&(this->tempoAnteriorGiro), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoAnteriorGiro), TIME_UTC);
             zoom-=0.005;
             if(zoom<5){
                 zoom=5;
@@ -169,7 +169,7 @@ void VimusMachineOriente::update()
                 if(tempoPassadoMSegs>INTERVALO_GIRANDO+INTERVALO_DESAPARECENDO){
                     audioSampler->setGain(1, 0);
                     estado=ESTADO_CABECA_BAIXA;
-                    boost::xtime_get(&(this->tempoCabecaBaixa), boost::TIME_UTC);
+                    boost::xtime_get(&(this->tempoCabecaBaixa), TIME_UTC);
                     kinectAngulo=0;
                     kinect->setTiltDegrees(kinectAngulo);
                     zoom=10.0f;
@@ -213,7 +213,7 @@ void VimusMachineOriente::draw()
     int numPixelsDif=0;
 
     if(estado==ESTADO_CABECA_BAIXA){
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoCabecaBaixa.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoCabecaBaixa.sec)*1000;
 
@@ -612,7 +612,7 @@ void VimusMachineOriente::constroiEspiralRandom() {
   }
   else{
     estado=ESTADO_COMPLETA;
-    boost::xtime_get(&(this->tempoTeiaCompleta), boost::TIME_UTC);
+    boost::xtime_get(&(this->tempoTeiaCompleta), TIME_UTC);
     audioSampler->setGain(1, 1);
   }
 }

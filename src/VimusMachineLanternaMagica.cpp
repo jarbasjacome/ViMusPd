@@ -179,7 +179,7 @@ VimusMachineLanternaMagica::VimusMachineLanternaMagica()
     this->audioCapture = new OpenALCapture();
 
 //    this->audioSampler->playSample(currVideo);
-//    boost::xtime_get(&(this->startSysTime2), boost::TIME_UTC);
+//    boost::xtime_get(&(this->startSysTime2), TIME_UTC);
 
 }
 
@@ -197,9 +197,10 @@ VimusMachineLanternaMagica::~VimusMachineLanternaMagica()
 void VimusMachineLanternaMagica::update()
 {
     this->audioCapture->grabSamples();
+
     try
     {
-//        boost::xtime_get(&(this->currSysTime2), boost::TIME_UTC);
+//        boost::xtime_get(&(this->currSysTime2), TIME_UTC);
 //        this->pastTimeMSecs = (this->currSysTime2.nsec - this->startSysTime2.nsec) / 1000000.0f;
 //        this->pastTimeMSecs += (this->currSysTime2.sec - this->startSysTime2.sec)*1000;
 
@@ -230,7 +231,7 @@ void VimusMachineLanternaMagica::update()
                     }
                     this->sampleStartTimeMSecs = this->timeStamps[currVideo][currMeasure];
                     this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
-                    boost::xtime_get(&(this->startSysTime2), boost::TIME_UTC);
+                    boost::xtime_get(&(this->startSysTime2), TIME_UTC);
                     this->audioSampler->setPlaybackPos(currVideo, this->sampleStartTimeMSecs/1000.0f);
                 }
                 // verifica se está no repeat_mode_groove e se o compasso atual é o último
@@ -248,7 +249,7 @@ void VimusMachineLanternaMagica::update()
                     currMeasure = 0;
                     this->sampleStartTimeMSecs = this->timeStamps[currVideo][currMeasure];
                     this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
-                    boost::xtime_get(&(this->startSysTime2), boost::TIME_UTC);
+                    boost::xtime_get(&(this->startSysTime2), TIME_UTC);
                     this->audioSampler->setPlaybackPos(currVideo, this->sampleStartTimeMSecs/1000.0f);
                 }
                 else
@@ -402,6 +403,7 @@ void VimusMachineLanternaMagica::draw()
 
     if (this->videoPlaying)
     {
+
         glDisable(GL_BLEND);
         glEnable(GL_TEXTURE_2D);
 
@@ -462,7 +464,6 @@ void VimusMachineLanternaMagica::draw()
     float tempRadius;
     float angle;
     float posZ = 0.0f;
-
 
     glPushMatrix();
 
@@ -613,8 +614,8 @@ void VimusMachineLanternaMagica::draw()
             break;
     }
     glPopMatrix();
+    glPopMatrix();
 }
-
 
 /**
  * Draw VimusMachineLanternaMagica.
@@ -820,7 +821,7 @@ void VimusMachineLanternaMagica::keyBoardFunc(unsigned char key, int x, int y)
                 this->audioSampler->playSample(currVideo);
                 currPitch = 1.0;
                 this->audioSampler->setSamplePitch(currVideo, currPitch);
-                boost::xtime_get(&(this->startSysTime2), boost::TIME_UTC);
+                boost::xtime_get(&(this->startSysTime2), TIME_UTC);
             }
             else
             {
@@ -904,7 +905,7 @@ void VimusMachineLanternaMagica::playCurrVideo()
     this->schedMeasureChange=-1;
     this->currMeasure=0;
     this->videoPlaying = true;
-    boost::xtime_get(&(this->startSysTime2), boost::TIME_UTC);
+    boost::xtime_get(&(this->startSysTime2), TIME_UTC);
     this->sampleStartTimeMSecs = 0;
     this->audioSampler->playSample(currVideo);
     currPitch = 1.0;

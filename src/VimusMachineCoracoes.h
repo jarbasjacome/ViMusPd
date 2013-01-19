@@ -112,7 +112,7 @@ public:
 
     void inicia(){
         batimento=random(0,1);
-        boost::xtime_get(&(this->tempoBatimento), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoBatimento), TIME_UTC);
         dividiu=false;
         divisao=0;
         dividindo=false;
@@ -135,11 +135,11 @@ public:
   void atualiza() {
     if (ativo) {
 
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoBatimento.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoBatimento.sec)*1000;
         if (tempoPassadoMSegs > 10) {
-            boost::xtime_get(&(this->tempoBatimento), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoBatimento), TIME_UTC);
             batimento+=0.03;
             if (batimento>1) {
                 batimento=0;

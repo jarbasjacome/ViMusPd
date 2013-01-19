@@ -90,7 +90,7 @@ VimusMachineCoracoes::VimusMachineCoracoes(MyFreenectDevice* kin)
     opacidade = 1;
     volume = 1;
 
-    boost::xtime_get(&(this->tempoInicio), boost::TIME_UTC);
+    boost::xtime_get(&(this->tempoInicio), TIME_UTC);
 
     if (DEBUG_MODE)
         cout << "\nVimusMachineCoracoes constructed.";
@@ -108,7 +108,7 @@ VimusMachineCoracoes::~VimusMachineCoracoes()
  */
 void VimusMachineCoracoes::update()
 {
-    boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+    boost::xtime_get(&(this->tempoAtual), TIME_UTC);
     this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoInicio.nsec) / 1000000.0f;
     this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoInicio.sec)*1000;
     if (tempoPassadoMSegs > 5000) {
@@ -129,7 +129,7 @@ void VimusMachineCoracoes::update()
             audioSampler->playSample(0);
         }
 
-        boost::xtime_get(&(this->tempoAtual), boost::TIME_UTC);
+        boost::xtime_get(&(this->tempoAtual), TIME_UTC);
         this->tempoPassadoMSegs = (this->tempoAtual.nsec - this->tempoFrenesi.nsec) / 1000000.0f;
         this->tempoPassadoMSegs += (this->tempoAtual.sec - this->tempoFrenesi.sec)*1000;
         if (tempoPassadoMSegs > INTERVALO_FRENESI) {
@@ -154,7 +154,7 @@ void VimusMachineCoracoes::update()
             volume = opacidade;
             audioSampler->setGain(0, volume);
 
-            boost::xtime_get(&(this->tempoFrenesi), boost::TIME_UTC);
+            boost::xtime_get(&(this->tempoFrenesi), TIME_UTC);
         }
     } else {
         if(audioSampler->getSecondOffset(0)!=0){
@@ -364,7 +364,7 @@ void VimusMachineCoracoes::divideCoracoes() {
     }
     geracao++;
     if (geracao == Coracao::ULTIMA_GERACAO) {
-      boost::xtime_get(&(this->tempoFrenesi), boost::TIME_UTC);
+      boost::xtime_get(&(this->tempoFrenesi), TIME_UTC);
       opacidade = 1;
       volume = 1;
     }

@@ -193,4 +193,3 @@ ALfloat OpenALSampler::getSecondOffset(int sNumber)
     alGetSourcef(source[sNumber],AL_SEC_OFFSET,&pos);
     return pos;
 }
-

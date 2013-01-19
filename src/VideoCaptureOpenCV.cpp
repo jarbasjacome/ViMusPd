@@ -112,7 +112,6 @@ void VideoCaptureOpenCV::stopCaptureDevice(int dev)
  */
 void VideoCaptureOpenCV::init()
 {
-
     for (int i=0; i<NUM_MAX_DEVICES; i++)
     {
         vidCapOpenCvPtr->videoCapDevices[i] = NULL;
@@ -149,12 +148,13 @@ void VideoCaptureOpenCV::init()
 /*
 //    LANTERNA MAGICA nao precisa de captura
 //    TODO: apenas ligar essas threads quando estiver ocorrendo captura.
+//    TODO: uma thread para cada camera!
 
     boost::thread grabT(VideoCaptureOpenCV::grabThreadFuncStatic);
     vidCapOpenCvPtr->grabThread = &grabT;
 
     vidCapOpenCvPtr->elapsedTime = 0;
-    boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), boost::TIME_UTC);
+    boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), TIME_UTC);
 //*/
 
     vidCapOpenCvPtr->flagGrabing = false;
@@ -230,14 +230,14 @@ void VideoCaptureOpenCV::grabThreadFunc()
             cout << "\nOpenCV resize error!\n";
         }
 
-        boost::xtime_get(&(vidCapOpenCvPtr->sleepGrab), boost::TIME_UTC);
+        boost::xtime_get(&(vidCapOpenCvPtr->sleepGrab), TIME_UTC);
         vidCapOpenCvPtr->elapsedTime = vidCapOpenCvPtr->sleepGrab.nsec - vidCapOpenCvPtr->lastTimeSys.nsec;
-        if (vidCapOpenCvPtr->elapsedTime < 17000000 && vidCapOpenCvPtr->elapsedTime > 0)
+        if (vidCapOpenCvPtr->elapsedTime < 10000000 && vidCapOpenCvPtr->elapsedTime > 0)
         {
-            vidCapOpenCvPtr->sleepGrab.nsec += 17000000 - vidCapOpenCvPtr->elapsedTime;
+            vidCapOpenCvPtr->sleepGrab.nsec += 10000000 - vidCapOpenCvPtr->elapsedTime;
             boost::thread::sleep(vidCapOpenCvPtr->sleepGrab);
         }
-        boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), boost::TIME_UTC);
+        boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), TIME_UTC);
 
     }
 }

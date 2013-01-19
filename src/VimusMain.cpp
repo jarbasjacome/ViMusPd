@@ -26,7 +26,6 @@
 
 int main(int argc, char** argv)
 {
-
 	VimusGUIGLUT gui; //user interface singleton.
 
 	VimusMachine * vimusMachine = new VimusMachine ();

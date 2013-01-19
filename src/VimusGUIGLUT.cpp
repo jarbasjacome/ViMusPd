@@ -193,14 +193,14 @@ void VimusGUIGLUT:: idleFunc()
 
     vimusUIPtr->editor->draw();
 
-    boost::xtime_get(&(vimusUIPtr->currSysTime), boost::TIME_UTC);
+    boost::xtime_get(&(vimusUIPtr->currSysTime), TIME_UTC);
     vimusUIPtr->pastTime = vimusUIPtr->currSysTime.nsec - vimusUIPtr->lastSysTime.nsec;
     if (vimusUIPtr->pastTime < 10000000 && vimusUIPtr->pastTime > 0)
     {
         vimusUIPtr->currSysTime.nsec += 10000000 - vimusUIPtr->pastTime;
         boost::thread::sleep(vimusUIPtr->currSysTime);
     }
-    boost::xtime_get(&(vimusUIPtr->lastSysTime), boost::TIME_UTC);
+    boost::xtime_get(&(vimusUIPtr->lastSysTime), TIME_UTC);
 
 }
 
@@ -210,7 +210,7 @@ void VimusGUIGLUT:: idleFunc()
 void VimusGUIGLUT :: start()
 {
     vimusUIPtr->pastTime = 0;
-    boost::xtime_get(&(vimusUIPtr->lastSysTime), boost::TIME_UTC);
+    boost::xtime_get(&(vimusUIPtr->lastSysTime), TIME_UTC);
 
     //start GLUT main loop.
 	glutMainLoop();

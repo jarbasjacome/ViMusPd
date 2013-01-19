@@ -25,11 +25,11 @@ OpenALCapture::OpenALCapture()
 
     if (devicelist)
     {
-        std::cout << "\nAvailable Capture Devices are:-\n";
+        std::cout << "\nDispositivos de captura de audio disponíveis:\n";
         int countDevs = 0;
         while (*devicelist )
         {
-            std::cout << "\n" << countDevs << "-" << devicelist;
+            std::cout << "\n" << countDevs << " " << devicelist;
             countDevs++;
             devicelist += strlen(devicelist) + 1;
         }
@@ -45,8 +45,8 @@ OpenALCapture::OpenALCapture()
             devicelist += strlen(devicelist) + 1;
             countDevs++;
         }
-        std::cout << "\n\nSelected device: ";
-        std::cout << "\n" << countDevs << "-" << devicelist;
+        std::cout << "\n\nDispositivo selecionado: ";
+        std::cout << "\n" << countDevs << " " << devicelist;
     }
 
     this->capDevice = alcCaptureOpenDevice(devicelist, SAMPLE_RATE, AL_FORMAT_STEREO16, BUFFER_SIZE);
@@ -69,29 +69,28 @@ OpenALCapture::OpenALCapture()
 OpenALCapture::~OpenALCapture()
 {
     alcCaptureCloseDevice(this->capDevice);
-
 }
 
 void OpenALCapture::startCapture ()
 {
     alcCaptureStart(this->capDevice);
-//    this->error(alcGetError(this->capDevice));
+    this->error(alcGetError(this->capDevice));
 }
 
 void OpenALCapture::stopCapture ()
 {
     alcCaptureStop(this->capDevice);
-//    this->error(alcGetError(this->capDevice));
+    this->error(alcGetError(this->capDevice));
 }
 
 void OpenALCapture::grabSamples()
 {
     alcGetIntegerv(this->capDevice, ALC_CAPTURE_SAMPLES, (ALCsizei)sizeof(ALint), &numAvailSamples);
-//    this->error(alcGetError(this->capDevice));
+    this->error(alcGetError(this->capDevice));
     if (numAvailSamples >= this->BUFFER_SIZE)
     {
-        alcCaptureSamples(this->capDevice, &(this->tempBuffer), numAvailSamples);
-//        this->error(alcGetError(this->capDevice));
+        alcCaptureSamples(this->capDevice, &(this->tempBuffer), this->BUFFER_SIZE);
+        this->error(alcGetError(this->capDevice));
         this->softWave();
     }
 }
@@ -142,7 +141,7 @@ void OpenALCapture::error(ALCenum error)
     switch (error)
     {
         case ALC_NO_ERROR:
-            std::cout << "\n\n\n\n\n\n\n\n\nALC_NO_ERROR\n";
+            //std::cout << "\n\n\n\n\n\n\n\n\nALC_NO_ERROR\n";
             break;
         case ALC_INVALID_DEVICE:
             std::cout << "\n\n\n\n\n\n\n\n\nALC_INVALID_DEVICE\n";

@@ -22,6 +22,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 
 #include <al.h>
 #include <alc.h>

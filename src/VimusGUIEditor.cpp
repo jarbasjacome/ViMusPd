@@ -27,7 +27,7 @@ VimusGUIEditor::VimusGUIEditor()
     fpsFlag = false;
 
     this->pastTime = 0;
-    boost::xtime_get(&(this->lastSysTime), boost::TIME_UTC);
+    boost::xtime_get(&(this->lastSysTime), TIME_UTC);
 
     fpsAcum = 0;
 
@@ -298,13 +298,13 @@ void VimusGUIEditor::updateFps()
 //        fpsAcum+= 1.0f;
 //    }
 
-    boost::xtime_get(&(this->currSysTime), boost::TIME_UTC);
+    boost::xtime_get(&(this->currSysTime), TIME_UTC);
     this->pastTime = this->currSysTime.nsec - this->lastSysTime.nsec +
                       this->currSysTime.sec*1000000000 - this->lastSysTime.sec*1000000000;
     if (this->pastTime > 1000000000)
     {
         fps = fpsAcum + (this->pastTime - 1000000000.0f)/1000000000.0f;
-        boost::xtime_get(&(this->lastSysTime), boost::TIME_UTC);
+        boost::xtime_get(&(this->lastSysTime), TIME_UTC);
         fpsAcum = 0;
     }
     else

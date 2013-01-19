@@ -25,12 +25,11 @@
  */
 
 
- /**
-  * Adaptation of cppview.cpp code from OpenKinect project to ViMus
-  */
+/**
+ * Adaptation of cppview.cpp code from OpenKinect project to ViMus
+ */
 
 #include "Freenect.h"
-
 
 //~MyFreenectDevice(){}
 // Do not call directly even in child

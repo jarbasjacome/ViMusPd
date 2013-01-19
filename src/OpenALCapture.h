@@ -59,7 +59,7 @@ class OpenALCapture
 
 	private:
 
-        static const int DEVICE = 4;
+        static const int DEVICE = 1;
         ALCdevice* capDevice;
 
         float buffer[BUFFER_SIZE];

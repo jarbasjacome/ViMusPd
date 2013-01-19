@@ -19,7 +19,7 @@
 
 #include "VimusMachine.h"
 
-Freenect::Freenect freenect;
+//Freenect::Freenect freenect; //KINECT
 
 using namespace std;
 
@@ -48,7 +48,7 @@ void VimusMachine :: start ()
     VideoCaptureOpenCV vidCap;
     vidCap.init();
     this->videoCap = &vidCap;
-/*
+/* KINECT
     this->kinect = &freenect.createDevice<MyFreenectDevice>(0);
     this->kinect->startVideo();
 	this->kinect->startDepth();
