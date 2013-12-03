@@ -20,6 +20,7 @@
 #include "VimusMachineOriente.h"
 
 using namespace std;
+using namespace boost;
 
 /**
  * VimusMachineOriente default constructor.

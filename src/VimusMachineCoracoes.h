@@ -30,6 +30,8 @@
 #include <boost/thread/xtime.hpp>
 #include <boost/math/constants/constants.hpp>
 
+using namespace boost;
+
 class Coracao {
 
 public:

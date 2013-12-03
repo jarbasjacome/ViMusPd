@@ -25,8 +25,8 @@ OpenALSampler::OpenALSampler()
 	ALenum error;
 
 	// Inicializar OpenAL
-
 	alutInit(0, NULL);
+
 	// Clear Error Code (so we can catch any new errors)
 	if ((error = alGetError()) != AL_NO_ERROR)
 		this->displayOpenALError("alutInit : ", error);

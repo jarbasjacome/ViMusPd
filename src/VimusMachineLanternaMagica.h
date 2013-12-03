@@ -175,9 +175,10 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
         const static float MAX_ZOOM = 10.5f;
         const static float MIN_ZOOM = 3.0f;
 
-        boost::xtime currSysTime2;
-        boost::xtime lastSysTime2;
-        boost::xtime startSysTime2;
+        boost::xtime tempoAtual;
+        boost::xtime ultimoGrabCaptura;
+        double tempoPassadoMSegs; //adicionado para bug de captura de audio
+
         double pastTimeMSecs;
         double sampleStartTimeMSecs;
 

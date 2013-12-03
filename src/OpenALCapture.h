@@ -40,6 +40,7 @@
  * @date 05.27.2011
  *
  */
+
 class OpenALCapture
 {
 	public:
@@ -59,7 +60,7 @@ class OpenALCapture
 
 	private:
 
-        static const int DEVICE = 1;
+        static const int DEVICE = 4;
         ALCdevice* capDevice;
 
         float buffer[BUFFER_SIZE];

@@ -20,6 +20,7 @@
 #include "VimusMachineVitalino.h"
 
 using namespace std;
+using namespace boost;
 
 /**
  * VimusMachineVitalino default constructor.

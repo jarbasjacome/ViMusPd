@@ -230,14 +230,14 @@ void VideoCaptureOpenCV::grabThreadFunc()
             cout << "\nOpenCV resize error!\n";
         }
 
-        boost::xtime_get(&(vidCapOpenCvPtr->sleepGrab), TIME_UTC);
-        vidCapOpenCvPtr->elapsedTime = vidCapOpenCvPtr->sleepGrab.nsec - vidCapOpenCvPtr->lastTimeSys.nsec;
-        if (vidCapOpenCvPtr->elapsedTime < 10000000 && vidCapOpenCvPtr->elapsedTime > 0)
-        {
-            vidCapOpenCvPtr->sleepGrab.nsec += 10000000 - vidCapOpenCvPtr->elapsedTime;
-            boost::thread::sleep(vidCapOpenCvPtr->sleepGrab);
-        }
-        boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), TIME_UTC);
+//        boost::xtime_get(&(vidCapOpenCvPtr->sleepGrab), TIME_UTC);
+//        vidCapOpenCvPtr->elapsedTime = vidCapOpenCvPtr->sleepGrab.nsec - vidCapOpenCvPtr->lastTimeSys.nsec;
+//        if (vidCapOpenCvPtr->elapsedTime < 10000000 && vidCapOpenCvPtr->elapsedTime > 0)
+//        {
+//            vidCapOpenCvPtr->sleepGrab.nsec += 10000000 - vidCapOpenCvPtr->elapsedTime;
+//            boost::thread::sleep(vidCapOpenCvPtr->sleepGrab);
+//        }
+//        boost::xtime_get(&(vidCapOpenCvPtr->lastTimeSys), TIME_UTC);
 
     }
 }

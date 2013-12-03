@@ -47,9 +47,12 @@ OpenALCapture::OpenALCapture()
         }
         std::cout << "\n\nDispositivo selecionado: ";
         std::cout << "\n" << countDevs << " " << devicelist;
+        std::cout << "\n" << countDevs << " " << devicelist;
+        std::cout << "\n" << countDevs << " " << devicelist;
     }
 
     this->capDevice = alcCaptureOpenDevice(devicelist, SAMPLE_RATE, AL_FORMAT_STEREO16, BUFFER_SIZE);
+    this->error(alcGetError(this->capDevice));
 
     for (int i=0; i<BUFFER_SIZE; i++)
     {

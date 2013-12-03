@@ -202,7 +202,8 @@ void VimusMachineLanternaMagica::update()
 
 //    if(tempoPassadoMSegs>1000) {
         this->audioCapture->grabSamples();
-//        boost::xtime_get(&(this->ultimoGrabCaptura), TIME_UTC);
+//        boost::xtime_get(&(this->ultimoGrabCaptura), TIME_UTC)l
+;
 //    }
 
     try
