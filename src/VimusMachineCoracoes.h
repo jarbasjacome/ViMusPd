@@ -21,7 +21,7 @@
 #define _VIMUSMACHINECORACOES_H_
 
 #include "VimusMachineOpenGLObject.h"
-#include "Freenect.h"
+//#include "Freenect.h"
 #include "OpenALSamplerCoracoes.h"
 #include "PVector.h"
 

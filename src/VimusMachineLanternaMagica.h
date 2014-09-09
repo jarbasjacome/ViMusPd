@@ -166,7 +166,8 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
 		const static int WAVE_DRAWER_CIRCLES_3D = 4;
 		const static int WAVE_DRAWER_CIRCLES_FLOWER = 5;
 		const static int WAVE_DRAWER_CIRCLES_FLOWER_3D = 6;
-		const static int NUM_OF_DRAWER_EFFECTS = 7;
+		const static int YANSAN = 7;
+		const static int NUM_OF_DRAWER_EFFECTS = 8;
 
         GLuint texName;
 
@@ -204,6 +205,10 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
 
 		unsigned char contrasTransform [256];
 
+        static const float TWO_PI = 2*3.1415926535897932384;
+        static const float PI = 3.1415926535897932384;
+        static const float HALF_PI = 3.1415926535897932384/2;
+
         void playCurrVideo();
         void nextTrack();
         void prevTrack();
@@ -233,6 +238,14 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
                 float z,
                 void *font,
                 std::ostringstream * strStream);
+
+        float random(float maior, float menor);
+
+        void desenhaRaio (float x, float y, float angulo,
+                          float tam, float grossura, int c, bool talo);
+
+        void linhaTorta (float pX, float pY, float tam, float g, float a,
+                         float *pX2, float *pY2, float *a2);
 
 };
 

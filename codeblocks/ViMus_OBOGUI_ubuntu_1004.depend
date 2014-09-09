@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1358525613 source:/dados/Dropbox/ViMus/src/Freenect.cpp
+1391120828 source:/dados/Dropbox/ViMus/src/Freenect.cpp
 	"Freenect.h"
 
-1358529370 /dados/Dropbox/ViMus/src/Freenect.h
+1391120673 /dados/Dropbox/ViMus/src/Freenect.h
 	"libfreenect.hpp"
 	<pthread.h>
 	<stdio.h>
@@ -14,7 +14,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1358452842 /dados/Dropbox/ViMus/src/libfreenect.hpp
+1391120673 /dados/Dropbox/ViMus/src/libfreenect.hpp
 	<libfreenect.h>
 	<stdexcept>
 	<map>
@@ -25,48 +25,48 @@
 	<winsock.h>
 	<sys/time.h>
 
-1353014185 /usr/include/stdint.h
+1380681784 /usr/include/stdint.h
 	<features.h>
 	<bits/wchar.h>
 	<bits/wordsize.h>
 
-1353014166 /usr/include/features.h
+1380681766 /usr/include/features.h
 	<bits/predefs.h>
 	<sys/cdefs.h>
 	<gnu/stubs.h>
 
-1353014166 /usr/include/bits/predefs.h
+1380681766 /usr/include/bits/predefs.h
 
-1353014192 /usr/include/sys/cdefs.h
+1380681792 /usr/include/sys/cdefs.h
 	<features.h>
 	<bits/wordsize.h>
 
-1353014185 /usr/include/bits/wordsize.h
+1380681784 /usr/include/bits/wordsize.h
 
-1353014166 /usr/include/gnu/stubs.h
+1380681766 /usr/include/gnu/stubs.h
 	<bits/wordsize.h>
 	<gnu/stubs-32.h>
 	<gnu/stubs-64.h>
 
-1353014215 /usr/include/gnu/stubs-64.h
+1380681815 /usr/include/gnu/stubs-64.h
 
-1353014188 /usr/include/bits/wchar.h
+1380681787 /usr/include/bits/wchar.h
 
-1353014189 /usr/include/sys/time.h
+1380681789 /usr/include/sys/time.h
 	<features.h>
 	<bits/types.h>
 	<time.h>
 	<bits/time.h>
 	<sys/select.h>
 
-1353014190 /usr/include/bits/types.h
+1380681790 /usr/include/bits/types.h
 	<features.h>
 	<bits/wordsize.h>
 	<bits/typesizes.h>
 
-1353014190 /usr/include/bits/typesizes.h
+1380681790 /usr/include/bits/typesizes.h
 
-1353014189 /usr/include/time.h
+1380681789 /usr/include/time.h
 	<features.h>
 	<stddef.h>
 	<bits/time.h>
@@ -77,13 +77,13 @@
 	<bits/types.h>
 	<xlocale.h>
 
-1353014189 /usr/include/bits/time.h
+1380681789 /usr/include/bits/time.h
 	<bits/types.h>
 	<bits/types.h>
 
-1353014167 /usr/include/xlocale.h
+1380681767 /usr/include/xlocale.h
 
-1353014192 /usr/include/sys/select.h
+1380681792 /usr/include/sys/select.h
 	<features.h>
 	<bits/types.h>
 	<bits/select.h>
@@ -91,12 +91,12 @@
 	<time.h>
 	<bits/time.h>
 
-1353014192 /usr/include/bits/select.h
+1380681792 /usr/include/bits/select.h
 	<bits/wordsize.h>
 
-1353014184 /usr/include/bits/sigset.h
+1380681784 /usr/include/bits/sigset.h
 
-1353014201 /usr/include/pthread.h
+1380681802 /usr/include/pthread.h
 	<features.h>
 	<endian.h>
 	<sched.h>
@@ -106,26 +106,26 @@
 	<bits/setjmp.h>
 	<bits/wordsize.h>
 
-1353014187 /usr/include/endian.h
+1380681787 /usr/include/endian.h
 	<features.h>
 	<bits/endian.h>
 	<bits/byteswap.h>
 
-1353014187 /usr/include/bits/endian.h
+1380681787 /usr/include/bits/endian.h
 
-1353014187 /usr/include/bits/byteswap.h
+1380681787 /usr/include/bits/byteswap.h
 	<bits/wordsize.h>
 
-1353014191 /usr/include/sched.h
+1380681790 /usr/include/sched.h
 	<features.h>
 	<bits/types.h>
 	<stddef.h>
 	<time.h>
 	<bits/sched.h>
 
-1353014191 /usr/include/bits/sched.h
+1380681790 /usr/include/bits/sched.h
 
-1353014184 /usr/include/signal.h
+1380681784 /usr/include/signal.h
 	<features.h>
 	<bits/sigset.h>
 	<bits/types.h>
@@ -140,33 +140,33 @@
 	<bits/pthreadtypes.h>
 	<bits/sigthread.h>
 
-1353014184 /usr/include/bits/signum.h
+1380681784 /usr/include/bits/signum.h
 
-1353014184 /usr/include/bits/siginfo.h
+1380681784 /usr/include/bits/siginfo.h
 	<bits/wordsize.h>
 
-1353014184 /usr/include/bits/sigaction.h
+1380681784 /usr/include/bits/sigaction.h
 
-1353014184 /usr/include/bits/sigcontext.h
+1380681784 /usr/include/bits/sigcontext.h
 	<bits/wordsize.h>
 
-1353014184 /usr/include/bits/sigstack.h
+1380681784 /usr/include/bits/sigstack.h
 
-1353014185 /usr/include/sys/ucontext.h
+1380681784 /usr/include/sys/ucontext.h
 	<features.h>
 	<signal.h>
 	<bits/wordsize.h>
 	<bits/sigcontext.h>
 
-1353014190 /usr/include/bits/pthreadtypes.h
+1380681790 /usr/include/bits/pthreadtypes.h
 	<bits/wordsize.h>
 
-1353014184 /usr/include/bits/sigthread.h
+1380681784 /usr/include/bits/sigthread.h
 
-1353014184 /usr/include/bits/setjmp.h
+1380681783 /usr/include/bits/setjmp.h
 	<bits/wordsize.h>
 
-1353014186 /usr/include/stdio.h
+1380681786 /usr/include/stdio.h
 	<features.h>
 	<stddef.h>
 	<bits/types.h>
@@ -179,7 +179,7 @@
 	<bits/stdio2.h>
 	<bits/stdio-ldbl.h>
 
-1353014186 /usr/include/libio.h
+1380681786 /usr/include/libio.h
 	<_G_config.h>
 	<stdarg.h>
 	<sys/cdefs.h>
@@ -187,13 +187,13 @@
 	<shlib-compat.h>
 	<bits/libio-ldbl.h>
 
-1353014186 /usr/include/_G_config.h
+1380681786 /usr/include/_G_config.h
 	<bits/types.h>
 	<stddef.h>
 	<wchar.h>
 	<gconv.h>
 
-1353014188 /usr/include/wchar.h
+1380681787 /usr/include/wchar.h
 	<features.h>
 	<stdio.h>
 	<stdarg.h>
@@ -207,27 +207,27 @@
 	<bits/wchar2.h>
 	<bits/wchar-ldbl.h>
 
-1353014194 /usr/include/wctype.h
+1380681793 /usr/include/wctype.h
 	<features.h>
 	<bits/types.h>
 	<stddef.h>
 	<endian.h>
 	<xlocale.h>
 
-1353014188 /usr/include/bits/wchar2.h
+1380681787 /usr/include/bits/wchar2.h
 
-1353014188 /usr/include/bits/wchar-ldbl.h
+1380681787 /usr/include/bits/wchar-ldbl.h
 
-1353014166 /usr/include/gconv.h
+1380681766 /usr/include/gconv.h
 	<features.h>
 	<wchar.h>
 	<stddef.h>
 
-1353014186 /usr/include/bits/stdio-lock.h
+1380681786 /usr/include/bits/stdio-lock.h
 	<bits/libc-lock.h>
 	<lowlevellock.h>
 
-1353014166 /usr/include/bits/libc-lock.h
+1380681766 /usr/include/bits/libc-lock.h
 	<pthread.h>
 	<stddef.h>
 	<lowlevellock.h>
@@ -237,48 +237,48 @@
 	<gnu/option-groups.h>
 	<bp-sym.h>
 
-1353014185 /usr/include/errno.h
+1380681784 /usr/include/errno.h
 	<features.h>
 	<bits/errno.h>
 
-1353014185 /usr/include/bits/errno.h
+1380681784 /usr/include/bits/errno.h
 	<linux/errno.h>
 
-1377119990 /usr/include/linux/errno.h
+1386097253 /usr/include/linux/errno.h
 	<asm/errno.h>
 
-1377119992 /usr/include/asm/errno.h
+1386097254 /usr/include/asm/errno.h
 	<asm-generic/errno.h>
 
-1377119989 /usr/include/asm-generic/errno.h
+1386097252 /usr/include/asm-generic/errno.h
 	<asm-generic/errno-base.h>
 
-1377119989 /usr/include/asm-generic/errno-base.h
+1386097252 /usr/include/asm-generic/errno-base.h
 
-1353014210 /usr/include/gnu/option-groups.h
+1380681811 /usr/include/gnu/option-groups.h
 
-1353014186 /usr/include/bits/libio-ldbl.h
+1380681786 /usr/include/bits/libio-ldbl.h
 
-1353014185 /usr/include/bits/stdio_lim.h
+1380681785 /usr/include/bits/stdio_lim.h
 
-1353014186 /usr/include/bits/sys_errlist.h
+1380681786 /usr/include/bits/sys_errlist.h
 
-1353014190 /usr/include/getopt.h
+1380681790 /usr/include/getopt.h
 	<ctype.h>
 
-1353014181 /usr/include/ctype.h
+1380681781 /usr/include/ctype.h
 	<features.h>
 	<bits/types.h>
 	<endian.h>
 	<xlocale.h>
 
-1353014186 /usr/include/bits/stdio.h
+1380681786 /usr/include/bits/stdio.h
 
-1353014186 /usr/include/bits/stdio2.h
+1380681786 /usr/include/bits/stdio2.h
 
-1353014186 /usr/include/bits/stdio-ldbl.h
+1380681786 /usr/include/bits/stdio-ldbl.h
 
-1353014187 /usr/include/string.h
+1380681787 /usr/include/string.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
@@ -286,14 +286,14 @@
 	<bits/string2.h>
 	<bits/string3.h>
 
-1353014187 /usr/include/bits/string.h
+1380681787 /usr/include/bits/string.h
 
-1353014187 /usr/include/bits/string2.h
+1380681787 /usr/include/bits/string2.h
 	<endian.h>
 	<bits/types.h>
 	<stdlib.h>
 
-1353014185 /usr/include/stdlib.h
+1380681784 /usr/include/stdlib.h
 	<features.h>
 	<stddef.h>
 	<bits/waitflags.h>
@@ -304,12 +304,12 @@
 	<bits/stdlib.h>
 	<bits/stdlib-ldbl.h>
 
-1353014191 /usr/include/bits/waitflags.h
+1380681790 /usr/include/bits/waitflags.h
 
-1353014191 /usr/include/bits/waitstatus.h
+1380681790 /usr/include/bits/waitstatus.h
 	<endian.h>
 
-1353014190 /usr/include/sys/types.h
+1380681790 /usr/include/sys/types.h
 	<features.h>
 	<bits/types.h>
 	<time.h>
@@ -319,18 +319,18 @@
 	<sys/sysmacros.h>
 	<bits/pthreadtypes.h>
 
-1353014191 /usr/include/sys/sysmacros.h
+1380681790 /usr/include/sys/sysmacros.h
 	<features.h>
 
-1353014185 /usr/include/alloca.h
+1380681784 /usr/include/alloca.h
 	<features.h>
 	<stddef.h>
 
-1353014185 /usr/include/bits/stdlib.h
+1380681784 /usr/include/bits/stdlib.h
 
-1353014185 /usr/include/bits/stdlib-ldbl.h
+1380681784 /usr/include/bits/stdlib-ldbl.h
 
-1353014187 /usr/include/bits/string3.h
+1380681787 /usr/include/bits/string3.h
 
 1263839526 /usr/include/GL/glut.h
 	"freeglut_std.h"
@@ -360,7 +360,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1353014185 /usr/include/inttypes.h
+1380681784 /usr/include/inttypes.h
 	<features.h>
 	<stdint.h>
 	<stddef.h>
@@ -426,7 +426,7 @@
 	<alc.h>
 	<alut.h>
 
-1364784355 source:/dados/Dropbox/ViMus/src/VideoCaptureOpenCV.cpp
+1397595168 source:/dados/Dropbox/ViMus/src/VideoCaptureOpenCV.cpp
 	"VideoCaptureOpenCV.h"
 
 1358549610 /dados/Dropbox/ViMus/src/VideoCaptureOpenCV.h
@@ -468,10 +468,10 @@
 	<ipl.h>
 	<ipl/ipl.h>
 
-1353014181 /usr/include/assert.h
+1380681781 /usr/include/assert.h
 	<features.h>
 
-1353014183 /usr/include/math.h
+1380681782 /usr/include/math.h
 	<features.h>
 	<bits/huge_val.h>
 	<bits/huge_valf.h>
@@ -484,24 +484,24 @@
 	<bits/mathcalls.h>
 	<bits/mathinline.h>
 
-1353014183 /usr/include/bits/huge_val.h
+1380681782 /usr/include/bits/huge_val.h
 	<endian.h>
 
-1353014183 /usr/include/bits/huge_valf.h
+1380681782 /usr/include/bits/huge_valf.h
 
-1353014183 /usr/include/bits/huge_vall.h
+1380681782 /usr/include/bits/huge_vall.h
 
-1353014183 /usr/include/bits/inf.h
+1380681782 /usr/include/bits/inf.h
 
-1353014183 /usr/include/bits/nan.h
+1380681782 /usr/include/bits/nan.h
 	<endian.h>
 
-1353014183 /usr/include/bits/mathdef.h
+1380681782 /usr/include/bits/mathdef.h
 	<bits/wordsize.h>
 
-1353014183 /usr/include/bits/mathcalls.h
+1380681782 /usr/include/bits/mathcalls.h
 
-1353014183 /usr/include/bits/mathinline.h
+1380681782 /usr/include/bits/mathinline.h
 	<bits/wordsize.h>
 
 1263954937 /usr/include/opencv/cxerror.h
@@ -527,28 +527,28 @@
 	<alloca.h>
 	<stdlib.h>
 
-1353014166 /usr/include/limits.h
+1380681766 /usr/include/limits.h
 	<features.h>
 	<bits/wordsize.h>
 	<bits/posix1_lim.h>
 	<bits/posix2_lim.h>
 	<bits/xopen_lim.h>
 
-1353014190 /usr/include/bits/posix1_lim.h
+1380681790 /usr/include/bits/posix1_lim.h
 	<bits/local_lim.h>
 
-1353014191 /usr/include/bits/local_lim.h
+1380681790 /usr/include/bits/local_lim.h
 	<linux/limits.h>
 
-1377119991 /usr/include/linux/limits.h
+1386097254 /usr/include/linux/limits.h
 
-1353014191 /usr/include/bits/posix2_lim.h
+1380681790 /usr/include/bits/posix2_lim.h
 
-1353014166 /usr/include/bits/xopen_lim.h
+1380681766 /usr/include/bits/xopen_lim.h
 	<bits/stdio_lim.h>
 	<bits/wordsize.h>
 
-1353014187 /usr/include/malloc.h
+1380681786 /usr/include/malloc.h
 	<features.h>
 	<stddef.h>
 	<stdio.h>
@@ -626,7 +626,7 @@
 1270181009 /usr/include/boost/config/posix_features.hpp
 	<unistd.h>
 
-1353014190 /usr/include/unistd.h
+1380681790 /usr/include/unistd.h
 	<features.h>
 	<bits/posix_opt.h>
 	<bits/environments.h>
@@ -636,14 +636,14 @@
 	<getopt.h>
 	<bits/unistd.h>
 
-1353014191 /usr/include/bits/posix_opt.h
+1380681790 /usr/include/bits/posix_opt.h
 
-1353014191 /usr/include/bits/environments.h
+1380681790 /usr/include/bits/environments.h
 	<bits/wordsize.h>
 
-1353014191 /usr/include/bits/confname.h
+1380681790 /usr/include/bits/confname.h
 
-1353014191 /usr/include/bits/unistd.h
+1380681790 /usr/include/bits/unistd.h
 
 1270181009 /usr/include/boost/config/suffix.hpp
 	<limits.h>
@@ -2861,7 +2861,7 @@
 	<stdlib.h>
 	<GL/glut.h>
 
-1364784355 source:/dados/Dropbox/ViMus/src/VimusGUIEditor.cpp
+1397595168 source:/dados/Dropbox/ViMus/src/VimusGUIEditor.cpp
 	"VimusGUIEditor.h"
 
 1358452843 /dados/Dropbox/ViMus/src/VimusGUIEditor.h
@@ -2923,22 +2923,20 @@
 	<stdlib.h>
 	"VimusMachinePin.h"
 
-1358452843 /dados/Dropbox/ViMus/src/VimusMachine.h
+1391121357 /dados/Dropbox/ViMus/src/VimusMachine.h
 	"VimusMachineEditor.h"
 	"VideoCaptureOpenCV.h"
-	"Freenect.h"
 	<string>
 
-1358452843 /dados/Dropbox/ViMus/src/VimusMachineEditor.h
+1391121352 /dados/Dropbox/ViMus/src/VimusMachineEditor.h
 	"VimusMachineObjects.h"
 	"VimusGUIObjects.h"
 	"VideoCaptureOpenCV.h"
-	"Freenect.h"
 	<string>
 	<sstream>
 	<vector>
 
-1358452843 /dados/Dropbox/ViMus/src/VimusMachineObjects.h
+1391121326 /dados/Dropbox/ViMus/src/VimusMachineObjects.h
 	"VimusMachineNormalObject.h"
 	"VimusMachineAbstractionObject.h"
 	"VimusMachineVideoPreview.h"
@@ -2949,8 +2947,6 @@
 	"VimusMachineCVBlobDetection.h"
 	"VimusMachineLanternaMagica.h"
 	"VimusMachineMangue.h"
-	"VimusMachineOriente.h"
-	"VimusMachineCoracoes.h"
 
 1358452843 /dados/Dropbox/ViMus/src/VimusMachineNormalObject.h
 	"VimusMachineObject.h"
@@ -2991,7 +2987,7 @@
 	"GL/glut.h"
 	<iostream>
 
-1364767299 /dados/Dropbox/ViMus/src/VimusMachineLanternaMagica.h
+1386050504 /dados/Dropbox/ViMus/src/VimusMachineLanternaMagica.h
 	"VimusMachineOpenGLObject.h"
 	"cv.h"
 	"highgui.h"
@@ -3009,9 +3005,8 @@
 	"GL/glut.h"
 	<iostream>
 
-1358452843 /dados/Dropbox/ViMus/src/VimusMachineOriente.h
+1391121282 /dados/Dropbox/ViMus/src/VimusMachineOriente.h
 	"VimusMachineOpenGLObject.h"
-	"Freenect.h"
 	"OpenALSamplerOriente.h"
 	"PVector.h"
 	"GL/glut.h"
@@ -3045,15 +3040,15 @@
 1270181001 /usr/include/boost/math/special_functions/detail/round_fwd.hpp
 	<boost/config.hpp>
 
-1353014183 /usr/include/fenv.h
+1380681782 /usr/include/fenv.h
 	<features.h>
 	<bits/fenv.h>
 	<bits/fenvinline.h>
 
-1353014183 /usr/include/bits/fenv.h
+1380681782 /usr/include/bits/fenv.h
 	<bits/wordsize.h>
 
-1353014183 /usr/include/bits/fenvinline.h
+1380681782 /usr/include/bits/fenvinline.h
 
 1270181008 /usr/include/boost/lexical_cast.hpp
 	<climits>
@@ -3178,9 +3173,8 @@
 	<limits.h>
 	<wchar.h>
 
-1386028683 /dados/Dropbox/ViMus/src/VimusMachineCoracoes.h
+1391121282 /dados/Dropbox/ViMus/src/VimusMachineCoracoes.h
 	"VimusMachineOpenGLObject.h"
-	"Freenect.h"
 	"OpenALSamplerCoracoes.h"
 	"PVector.h"
 	"GL/glut.h"
@@ -3188,10 +3182,10 @@
 	<boost/thread/xtime.hpp>
 	<boost/math/constants/constants.hpp>
 
-1364784355 source:/dados/Dropbox/ViMus/src/VimusGUIGLUT.cpp
+1397595168 source:/dados/Dropbox/ViMus/src/VimusGUIGLUT.cpp
 	"VimusGUIGLUT.h"
 
-1358452843 /dados/Dropbox/ViMus/src/VimusGUIGLUT.h
+1399057075 /dados/Dropbox/ViMus/src/VimusGUIGLUT.h
 	"Configuration.h"
 	"VimusGUIEditor.h"
 	"VimusMachine.h"
@@ -3216,7 +3210,7 @@
 1358452843 source:/dados/Dropbox/ViMus/src/VimusGUIVideoPreview.cpp
 	"VimusGUIVideoPreview.h"
 
-1364751217 source:/dados/Dropbox/ViMus/src/VimusMachine.cpp
+1391121551 source:/dados/Dropbox/ViMus/src/VimusMachine.cpp
 	"VimusMachine.h"
 
 1358452843 source:/dados/Dropbox/ViMus/src/VimusMachineAbstractionObject.cpp
@@ -3231,10 +3225,10 @@
 1364784355 source:/dados/Dropbox/ViMus/src/VimusMachineCoracoes.cpp
 	"VimusMachineCoracoes.h"
 
-1358452843 source:/dados/Dropbox/ViMus/src/VimusMachineEditor.cpp
+1391121594 source:/dados/Dropbox/ViMus/src/VimusMachineEditor.cpp
 	"VimusMachineEditor.h"
 
-1364784500 source:/dados/Dropbox/ViMus/src/VimusMachineLanternaMagica.cpp
+1397595169 source:/dados/Dropbox/ViMus/src/VimusMachineLanternaMagica.cpp
 	"VimusMachineLanternaMagica.h"
 	"OpenALCapture.h"
 
@@ -3271,7 +3265,7 @@
 1358452843 source:/dados/Dropbox/ViMus/src/VimusMachineVideoPreview.cpp
 	"VimusMachineVideoPreview.h"
 
-1386028938 source:/dados/Dropbox/ViMus/src/VimusMachineVitalino.cpp
+1397595169 source:/dados/Dropbox/ViMus/src/VimusMachineVitalino.cpp
 	"VimusMachineVitalino.h"
 
 1358525680 source:/dados/Dropbox/ViMus/src/VimusMain.cpp

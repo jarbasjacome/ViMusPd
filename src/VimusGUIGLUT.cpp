@@ -24,7 +24,7 @@ using namespace std;
 /**
  * Vimus User Interface Singleton object, to make it possible to
  * call non-static member functions from GLUT callback
- * function like keyDoardFunc, displayFunc.
+ * function like keyBoardFunc, displayFunc.
  */
 VimusGUIGLUT * VimusGUIGLUT::vimusUIPtr = new VimusGUIGLUT();
 
@@ -86,7 +86,7 @@ void VimusGUIGLUT::motionFunc(int x, int y)
  * @param int x cursor position.
  * @param int y cursor position.
  */
-void VimusGUIGLUT ::passiveMotionFunc(int x, int y)
+void VimusGUIGLUT::passiveMotionFunc(int x, int y)
 {
     vimusUIPtr->editor->passiveMotionFunc(x, y);
 }
@@ -193,6 +193,7 @@ void VimusGUIGLUT:: idleFunc()
 
     vimusUIPtr->editor->draw();
 
+    /*
     boost::xtime_get(&(vimusUIPtr->currSysTime), TIME_UTC);
     vimusUIPtr->pastTime = vimusUIPtr->currSysTime.nsec - vimusUIPtr->lastSysTime.nsec;
     if (vimusUIPtr->pastTime < 10000000 && vimusUIPtr->pastTime > 0)
@@ -201,6 +202,7 @@ void VimusGUIGLUT:: idleFunc()
         boost::thread::sleep(vimusUIPtr->currSysTime);
     }
     boost::xtime_get(&(vimusUIPtr->lastSysTime), TIME_UTC);
+    */
 
 }
 

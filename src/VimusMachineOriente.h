@@ -21,7 +21,7 @@
 #define _VIMUSMACHINEORIENTE_H_
 
 #include "VimusMachineOpenGLObject.h"
-#include "Freenect.h"
+//#include "Freenect.h"
 #include "OpenALSamplerOriente.h"
 #include "PVector.h"
 

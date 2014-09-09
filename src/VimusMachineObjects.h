@@ -30,7 +30,7 @@
 #include "VimusMachineCVBlobDetection.h"
 #include "VimusMachineLanternaMagica.h"
 #include "VimusMachineMangue.h"
-#include "VimusMachineOriente.h"
-#include "VimusMachineCoracoes.h"
+//#include "VimusMachineOriente.h"
+//#include "VimusMachineCoracoes.h"
 
 #endif //_VIMUSMACHINEOBJECTS_H_

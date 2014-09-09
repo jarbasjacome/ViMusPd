@@ -24,7 +24,7 @@
 
 #include "VimusMachineEditor.h"
 #include "VideoCaptureOpenCV.h"
-#include "Freenect.h"
+//#include "Freenect.h"
 
 #include <string>
 
@@ -111,7 +111,7 @@ class VimusMachine// : public Machine //TODO: use abstract machine
 
         VideoCaptureOpenCV* videoCap;
 
-        MyFreenectDevice* kinect;
+        //MyFreenectDevice* kinect;
 
 };
 

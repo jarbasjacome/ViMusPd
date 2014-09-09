@@ -41,7 +41,7 @@ VideoCaptureOpenCV::VideoCaptureOpenCV()
  */
 int VideoCaptureOpenCV::getNextCaptureDevice()
 {
-    int dev = 1;
+    int dev = 0;
 
     //find first available device.
     while (dev < NUM_MAX_DEVICES)
@@ -145,7 +145,7 @@ void VideoCaptureOpenCV::init()
         }
     }
 
-/*
+//*
 //    LANTERNA MAGICA nao precisa de captura
 //    TODO: apenas ligar essas threads quando estiver ocorrendo captura.
 //    TODO: uma thread para cada camera!

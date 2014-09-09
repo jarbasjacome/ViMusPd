@@ -7,19 +7,20 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/Debug/ViMus" prefix_auto="1" extension_auto="1" />
+				<Option output="/dados/data/ViMus_exec_arch/bin/Debug/ViMus" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="/usr/bin" />
-				<Option object_output="../obj/Debug/" />
+				<Option object_output="/dados/data/ViMus_exec_arch/obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="../bin/Release/ViMus" prefix_auto="1" extension_auto="1" />
+				<Option output="/dados/data/ViMus_exec_arch/bin/Release/ViMus" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="/usr/bin" />
-				<Option object_output="../obj/Release/" />
+				<Option object_output="/dados/data/ViMus_exec_arch/obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -57,7 +58,6 @@
 			<Add directory="/usr/lib" />
 		</Linker>
 		<Unit filename="../src/Configuration.h" />
-		<Unit filename="../src/Freenect.cpp" />
 		<Unit filename="../src/Freenect.h" />
 		<Unit filename="../src/Machine.h" />
 		<Unit filename="../src/OpenALCapture.cpp" />
@@ -96,7 +96,6 @@
 		<Unit filename="../src/VimusMachineCVBlobDetection.h" />
 		<Unit filename="../src/VimusMachineCVThreshold.cpp" />
 		<Unit filename="../src/VimusMachineCVThreshold.h" />
-		<Unit filename="../src/VimusMachineCoracoes.cpp" />
 		<Unit filename="../src/VimusMachineCoracoes.h" />
 		<Unit filename="../src/VimusMachineEditor.cpp" />
 		<Unit filename="../src/VimusMachineEditor.h" />
@@ -111,7 +110,6 @@
 		<Unit filename="../src/VimusMachineObjects.h" />
 		<Unit filename="../src/VimusMachineOpenGLObject.cpp" />
 		<Unit filename="../src/VimusMachineOpenGLObject.h" />
-		<Unit filename="../src/VimusMachineOriente.cpp" />
 		<Unit filename="../src/VimusMachineOriente.h" />
 		<Unit filename="../src/VimusMachinePin.cpp" />
 		<Unit filename="../src/VimusMachinePin.h" />

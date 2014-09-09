@@ -23,7 +23,7 @@
 #include "VimusMachineObjects.h"
 #include "VimusGUIObjects.h"
 #include "VideoCaptureOpenCV.h"
-#include "Freenect.h"
+//#include "Freenect.h"
 
 #include <string>
 #include <sstream>
@@ -41,7 +41,7 @@ class VimusMachineEditor
 		/**
          * VimusMachineEditor default constructor.
          */
-        VimusMachineEditor(VideoCaptureOpenCV* vidCap, MyFreenectDevice* kin);
+        VimusMachineEditor(VideoCaptureOpenCV* vidCap);//, MyFreenectDevice* kin);
 
 		/**
          * VimusMachineEditor default destructor.
@@ -147,7 +147,7 @@ class VimusMachineEditor
 		 */
 		 VideoCaptureOpenCV* videoCap;
 
-        MyFreenectDevice* kinect;
+        //MyFreenectDevice* kinect;
 
 };
 #endif //_VIMUSMACHINEEDITOR_H_

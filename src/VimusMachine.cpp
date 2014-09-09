@@ -37,7 +37,7 @@ VimusMachine :: VimusMachine ()
  */
 VimusMachine :: ~VimusMachine()
 {
-    delete(kinect);
+//    delete(kinect);
 }
 
 /**
@@ -53,15 +53,15 @@ void VimusMachine :: start ()
     this->kinect->startVideo();
 	this->kinect->startDepth();
 //*/
-	this->editor = new VimusMachineEditor(this->videoCap, this->kinect);
+	this->editor = new VimusMachineEditor(this->videoCap);//, this->kinect);
 
 	this->rootAbsObj = this->editor->getRootAbsObj();
 
 }
 
 void VimusMachine::stop(){
-   	kinect->stopVideo();
-	kinect->stopDepth();
+//   	kinect->stopVideo();
+//	kinect->stopDepth();
 
 }
 

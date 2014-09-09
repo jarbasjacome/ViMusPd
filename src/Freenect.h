@@ -31,7 +31,7 @@
 #ifndef _FREENECT_H_
 #define _FREENECT_H_
 
-#include "libfreenect.hpp"
+//#include "libfreenect.hpp"
 #include <pthread.h>
 #include <stdio.h>
 #include <iostream>

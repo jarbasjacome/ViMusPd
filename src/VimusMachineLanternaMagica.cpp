@@ -400,6 +400,9 @@ void VimusMachineLanternaMagica::draw()
 
     glScalef(1,1.333f,1); //TODO: INVERT SCREEN DISTORTION
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     if (this->videoPlaying)
     {
 
@@ -610,6 +613,32 @@ void VimusMachineLanternaMagica::draw()
                 posZ += dist;
                 glEnd();
             }
+            break;
+		case YANSAN:
+            glColor4f (0.0f, 0.0f, 0.0f, 0.3f);
+            glBegin(GL_QUADS);
+                glVertex3f( 1.0f, 1.0f, 0.0f);
+                glVertex3f(-1.0f, 1.0f, 0.0f);
+                glVertex3f(-1.0f,-1.0f, 0.0f);
+                glVertex3f( 1.0f,-1.0f, 0.0f);
+            glEnd();
+
+            float vol = pow(1+this->audioCapture->getSoftAmp(),2)-1;
+
+            /*
+            glColor4f (1.0f, 1.0f, 1.0f, vol*0.05);
+            glBegin(GL_QUADS);
+                glVertex3f( 1.0f, 1.0f, 0.0f);
+                glVertex3f(-1.0f, 1.0f, 0.0f);
+                glVertex3f(-1.0f,-1.0f, 0.0f);
+                glVertex3f( 1.0f,-1.0f, 0.0f);
+            glEnd();
+            */
+
+            glColor4f(1.0f, 1.0f, 1.0f, vol);
+
+            desenhaRaio(0,0, random(0, TWO_PI), 0.2, 3 + 8*vol, 0, true);
+
             break;
     }
     glPopMatrix();
@@ -1018,3 +1047,86 @@ void VimusMachineLanternaMagica :: changeContrast (float bright, float contrast)
 		this->distorcedFrame[i] = contrasTransform[this->capturedFrame[i]];
 	}
 }
+
+float VimusMachineLanternaMagica::random(float maior, float menor) {
+    float r = menor + (float)rand()/((float)RAND_MAX/(maior-menor));
+    return r;
+}
+
+void VimusMachineLanternaMagica::desenhaRaio (float x, float y,
+                                              float angulo, float tam,
+                                              float grossura, int c,
+                                              bool talo) {
+    float dir = random(0,1);
+    float ramifica = random(0,1);
+    float x2 = x + tam*cos(angulo);
+    float y2 = y + tam*sin(angulo);
+    float a2 = 0;
+    glLineWidth (grossura);
+//    glBegin(GL_LINES);
+//    glVertex2f(x, y);
+//    glVertex2f(x2,y2);
+//    glEnd();
+    linhaTorta (x, y, tam, grossura, angulo, &x2, &y2, &a2);
+
+    if (c < 12 || grossura > 0.5) {
+        if (talo) {
+            if (dir > 0.5) {
+                desenhaRaio (x2, y2, angulo + random (0, 1),
+                             tam*0.9, grossura*0.9, c+1, true);
+                if (ramifica > 0.8) {
+                    desenhaRaio (x2, y2, angulo + random (0, -1),
+                                 tam*random(0.8, 0.9), grossura, c+1, false);
+                }
+            } else {
+                desenhaRaio (x2, y2, angulo + random (0, -1),
+                             tam*0.9, grossura*0.9, c+1, true);
+                if (ramifica > 0.8) {
+                    desenhaRaio (x2, y2, angulo + random (0, 1),
+                                 tam*random(0.8, 0.9), grossura, c+1, false);
+                }
+            }
+        } else {
+            if (dir > 0.5) {
+                desenhaRaio (x2, y2, angulo + random (0, 1),
+                             tam*0.8, grossura*0.8, c+1, false);
+                if (ramifica > 0.9) {
+                    desenhaRaio (x2, y2, angulo + random (0, -1),
+                                 tam*random(0.6, 0.9), grossura, c+1, false);
+                }
+            } else {
+                desenhaRaio (x2, y2, angulo + random (0, -1),
+                             tam*0.8, grossura*0.8, c+1, false);
+                if (ramifica > 0.9) {
+                    desenhaRaio (x2, y2, angulo + random (0, 1),
+                                 tam*random(0.6, 0.9), grossura, c+1, false);
+                }
+            }
+        }
+    }
+}
+
+void VimusMachineLanternaMagica::linhaTorta (float pX, float pY,
+                                             float tam, float g,
+                                             float a,
+                                             float *pX2, float *pY2,
+                                             float *a2) {
+  float t=0;
+  float inc=0.1;
+  float incA = 0;
+  while (t<1.0){
+    glLineWidth((5.0-t)*g/5.0);
+    glBegin(GL_LINES);
+    glVertex2f(pX, pY);
+    glVertex2f(pX+=cos(a)*tam*inc,pY-=sin(a)*tam*inc);
+    glEnd();
+    a+=incA+random(-0.2,0.2);
+    float rT = 1-tam/0.9;
+    incA+=random(-0.1*rT,0.1*rT);
+    t+=inc;
+  }
+  *pX2 = pX;
+  *pY2 = pY;
+  *a2 = a;
+}
+
