@@ -1,5 +1,5 @@
 /**
- * Copyright 2007-2011 Jarbas Jácome
+ * Copyright 2007-2014 Jarbas JÃ¡come
  *
  * This file is part of ViMus.
  *
@@ -17,41 +17,49 @@
  * along with ViMus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _VIMUSMACHINEPINVIDEO_H_
-#define _VIMUSMACHINEPINVIDEO_H_
+#ifndef _VIMUSMACHINEPINAUDIO_H_
+#define _VIMUSMACHINEPINAUDIO_H_
 
 #include <stdlib.h>
 
 #include "VimusMachinePin.h"
-
-//FAZER:    Confirmar se realmente necessitará ser uma classe
-//          pra cada tipo de pino. Por enquanto não.
-
+#include "PdMaquina.h"
 
 /**
- * VimusMachinePinVideo represents a video Pin.
+ * VimusMachinePinAudio represents a control Pin.
  *
- * @author Jarbas Jácome
+ * @author Jarbas JÃ¡come
  */
-class VimusMachinePinVideo : public VimusMachinePin
+class VimusMachinePinAudio : public VimusMachinePin
 {
     public:
 
         /**
-         * VimusMachinePinVideo constructor.
+         * VimusMachinePinAudio constructor.
          */
-        VimusMachinePinVideo (bool input, int index);
+        VimusMachinePinAudio (bool input, int index, PdMaquina* pd);
 
         /**
-         * VimusMachinePinVideo destructor.
+         * VimusMachinePinAudio destructor.
          */
-        ~VimusMachinePinVideo();
+        ~VimusMachinePinAudio();
 
-		unsigned char ** ppFrame;
+        /**
+         * Connect to an input pin.
+         */
+		bool connect(VimusMachinePinAudio *pin);
+
+        /**
+         * Disconnect a pin.
+         */
+        bool disconnect(VimusMachinePinAudio *pin);
+
+        VimusMachinePinAudio * connections[MAX_CONNECTIONS];
 
     private:
 
+        PdMaquina* pd;
 
 };
 
-#endif //_VIMUSMACHINEPINVIDEO_H_
+#endif //_VIMUSMACHINEPINAUDIO_H_

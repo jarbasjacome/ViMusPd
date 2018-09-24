@@ -28,40 +28,40 @@ VimusMachinePixelAdd::VimusMachinePixelAdd()
 {
     VimusMachineObject::initObject();
 
-	this->label = string ("pixelAdd");
-	this->addInputPin(VimusMachinePin::TYPE_VIDEO);
-	this->addInputPin(VimusMachinePin::TYPE_CONTROL);
+    this->label = string ("pixelAdd");
+    this->addInputPin(VimusMachinePin::TYPE_VIDEO);
+    this->addInputPin(VimusMachinePin::TYPE_CONTROL);
 
-	this->addOutputPin(VimusMachinePin::TYPE_VIDEO);
+    this->addOutputPin(VimusMachinePin::TYPE_VIDEO);
 
-	this->ppNullFrame = new unsigned char*;
-	(*this->ppNullFrame) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
-	for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
-	{
-		(*this->ppNullFrame)[i] = 0;
-	}
+    this->ppNullFrame = new unsigned char*;
+    (*this->ppNullFrame) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
+    for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
+    {
+        (*this->ppNullFrame)[i] = 0;
+    }
 
-	// do not assign another valor to it.
-	this->ppOutputData = new unsigned char*;
-	(*this->ppOutputData) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
-	for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
-	{
-		(*this->ppOutputData)[i] = 0;
-	}
+    // do not assign another valor to it.
+    this->ppOutputData = new unsigned char*;
+    (*this->ppOutputData) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
+    for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
+    {
+        (*this->ppOutputData)[i] = 0;
+    }
 
-	// set video output pin
-	((VimusMachinePinVideo *)this->outputPins[0])->ppFrame = this->ppOutputData;
+    // set video output pin
+    ((VimusMachinePinVideo *)this->outputPins[0])->ppFrame = this->ppOutputData;
 
-	// do not assign another valor to it.
-	this->ppInputData = new unsigned char*;
-	(*this->ppInputData) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
-	for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
-	{
-		(*this->ppInputData)[i] = 0;
-	}
+    // do not assign another valor to it.
+    this->ppInputData = new unsigned char*;
+    (*this->ppInputData) = new unsigned char[VIDEO_WIDTH*VIDEO_HEIGHT*3];
+    for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
+    {
+        (*this->ppInputData)[i] = 0;
+    }
 
-	// set video input pin
-	//((VimusMachinePinVideo *)this->inputPins[0])->ppFrame = this->ppInputData;
+    // set video input pin
+    //((VimusMachinePinVideo *)this->inputPins[0])->ppFrame = this->ppInputData;
 
     if (DEBUG_MODE)
         cout << "\nVimusMachinePixelAdd constructed.";
@@ -79,10 +79,10 @@ VimusMachinePixelAdd::~VimusMachinePixelAdd()
  */
 void VimusMachinePixelAdd::update()
 {
-	for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
-	{
-		(*this->ppOutputData)[i] = (*this->ppInputData)[i] + 150;
-	}
+    for (int i=0; i<VIDEO_WIDTH*VIDEO_HEIGHT*3; i++)
+    {
+        (*this->ppOutputData)[i] = (*this->ppInputData)[i] + 150;
+    }
 }
 
 /**
@@ -92,7 +92,7 @@ void VimusMachinePixelAdd::update()
  */
 unsigned char** VimusMachinePixelAdd::getCurrentFramePointer()
 {
-	return this->ppOutputData;
+    return this->ppOutputData;
 }
 
 /**
@@ -101,41 +101,44 @@ unsigned char** VimusMachinePixelAdd::getCurrentFramePointer()
  */
 bool VimusMachinePixelAdd::connectOutput (int outPin, VimusMachineObject * dstObj, int inPin)
 {
-	return dstObj->connectInput(this, outPin, inPin);
+    return dstObj->connectInput(this, outPin, inPin);
 }
 
 /**
  * Do some action before and/or after be connected by another
  * objects pin.
  */
-bool VimusMachinePixelAdd::connectInput (VimusMachineObject * srcObj, int outPin, int inPin)
+bool VimusMachinePixelAdd::connectInput (VimusMachineObject * srcObj, 
+        int outPin, int inPin)
 {
-	bool ret = false;
-	if (srcObj->outputPins[outPin]->connect(this->inputPins[inPin]))
-	{
-		((VimusMachinePinVideo *) this->inputPins[inPin])->ppFrame =
-			((VimusMachinePinVideo *) srcObj->outputPins[outPin])->ppFrame;
-		this->ppInputData = ((VimusMachinePinVideo *) this->inputPins[inPin])->ppFrame;
-		ret = true;
-	}
-	return ret;
+    bool ret = false;
+    if (srcObj->outputPins[outPin]->connect(this->inputPins[inPin]))
+    {
+        ((VimusMachinePinVideo *) this->inputPins[inPin])->ppFrame =
+            ((VimusMachinePinVideo *) srcObj->outputPins[outPin])->ppFrame;
+        this->ppInputData = ((VimusMachinePinVideo *) this->inputPins[inPin])->ppFrame;
+        ret = true;
+    }
+    return ret;
 }
 
 /**
  * Do some action before and/or after disconnect an output pin from
  * another objects pin.
  */
-void VimusMachinePixelAdd::disconnectOutput (int outPin, VimusMachineObject * dstObj, int inPin)
+void VimusMachinePixelAdd::disconnectOutput (int outPin,
+        VimusMachineObject * dstObj, int inPin)
 {
-	dstObj->disconnectInput(this, outPin, inPin);
+    dstObj->disconnectInput(this, outPin, inPin);
 }
 
 /**
  * Do some action before and/or after disconnect an input pin from
  * another objects pin.
  */
-void VimusMachinePixelAdd::disconnectInput (VimusMachineObject * srcObj, int outPin, int inPin)
+void VimusMachinePixelAdd::disconnectInput (VimusMachineObject * srcObj,
+        int outPin, int inPin)
 {
-	srcObj->outputPins[outPin]->disconnect(this->inputPins[inPin]);
-	this->ppInputData = this->ppNullFrame;
+    srcObj->outputPins[outPin]->disconnect(this->inputPins[inPin]);
+    this->ppInputData = this->ppNullFrame;
 }

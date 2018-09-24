@@ -77,6 +77,9 @@ void VimusMachineAbstractionObject ::update()
  */
 void VimusMachineAbstractionObject::addObject(VimusMachineObject * object)
 {
+    if (DEBUG_MODE)
+        cout << "\nInicio addObject.";
+
     if (numObjects < MAX_OBJ)
     {
         objects[numObjects] = object;
@@ -94,6 +97,9 @@ void VimusMachineAbstractionObject::addObject(VimusMachineObject * object)
 		}
         numObjects++;
     }
+
+    if (DEBUG_MODE)
+        cout << "\nFim addObject.";
 
 }
 

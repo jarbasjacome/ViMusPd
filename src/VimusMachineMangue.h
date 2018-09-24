@@ -24,6 +24,7 @@
 
 #include "cv.h"
 #include "highgui.h"
+#include "opencv2/opencv.hpp"
 
 #include "GL/glut.h"
 
@@ -143,8 +144,8 @@ class VimusMachineMangue : public VimusMachineOpenGLObject
         float camZ;
         float camZOrigin;
 
-        const static float MAX_ZOOM = 10.5f;
-        const static float MIN_ZOOM = 3.0f;
+        constexpr static float MAX_ZOOM = 10.5f;
+        constexpr static float MIN_ZOOM = 3.0f;
 
         const static int AVERAGE_ARRAY_SIZE = 20;
         // this value determines how smooth will zoom and move object
@@ -195,11 +196,11 @@ class VimusMachineMangue : public VimusMachineOpenGLObject
         float mapsPosition;
 
         // minimum distance needed to consider a slide gesture.
-        const static float SLIDE_VALUE = 0.2f;
+        constexpr static float SLIDE_VALUE = 0.2f;
 
-        const static float SPACE_BEETWEEN_MAPS = 0.8f;
+        constexpr static float SPACE_BEETWEEN_MAPS = 0.8f;
 
-        const static int MIN_BLOB_SIZE = 20;
+        constexpr static int MIN_BLOB_SIZE = 20;
 
         bool blobPressed;
 

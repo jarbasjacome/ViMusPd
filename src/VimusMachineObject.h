@@ -26,6 +26,7 @@
 #include "VimusMachinePin.h"
 #include "VimusMachinePinVideo.h"
 #include "VimusMachinePinControl.h"
+#include "VimusMachinePinAudio.h"
 
 #include <string>
 

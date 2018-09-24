@@ -20,8 +20,6 @@
 #ifndef _VIMUSMACHINE_H_
 #define _VIMUSMACHINE_H_
 
-//#include "Machine.h"
-
 #include "VimusMachineEditor.h"
 #include "VideoCaptureOpenCV.h"
 //#include "Freenect.h"

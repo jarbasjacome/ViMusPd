@@ -1,5 +1,5 @@
 /**
- * Copyright 2007-2011 Jarbas Jácome
+ * Copyright 2007-2011 Jarbas JÃ¡come
  *
  * This file is part of ViMus.
  *
@@ -17,58 +17,54 @@
  * along with ViMus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _VIMUSMACHINECVTHRESHOLD_H_
-#define _VIMUSMACHINECVTHRESHOLD_H_
+#ifndef _VIMUSMACHINEPDOBJECT_H_
+#define _VIMUSMACHINEPDOBJECT_H_
 
+#include <stdlib.h>
+#include "Configuration.h"
+
+#include "PdMaquina.h"
 #include "VimusMachineObject.h"
 
-#include "cv.h"
-#include "highgui.h"
-#include "opencv2/opencv.hpp"
-
-#include <iostream>
+#include <string>
 
 /**
- * VimusMachineCVThreshold calls OpenCV threshold function.
+ * VimusMachinePdObject Ã© uma classe abstrata que representa
+ * objetos do Pure Data.
  *
- * @author  Jarbas Jácome
- * @date    03.06.2010
+ * @author Jarbas JÃ¡come
  */
-class VimusMachineCVThreshold : public VimusMachineObject
+class VimusMachinePdObject : public VimusMachineObject
 {
     public:
 
         /**
-         * VimusMachineCVThreshold default constructor.
+         * VimusMachinePdObject default constructor.
          */
-        VimusMachineCVThreshold();
+        VimusMachinePdObject(const std::string& nome,
+                             int pinosEntrada, int tiposPinosEntrada[],
+                             int pinosSaida, int tiposPinosSaida[],
+                             int indice, PdMaquina* pd);
 
         /**
-         * VimusMachineCVThreshold destructor.
+         * VimusMachinePdObject destructor.
          */
-        ~VimusMachineCVThreshold();
+        virtual ~VimusMachinePdObject();
 
         /**
-         * Update VimusMachineCVThreshold.
+         * Atualiza VimusMachinePdObject.
          */
         void update();
 
 		/**
-		 * Get pointer to currentFrame buffer pointer.
-		 * This is necessary for GUI have a direct access to
-		 * machine frame buffer.
-		 */
-		unsigned char** getCurrentFramePointer();
-
-		/**
-		 * Do some action before and/or after connect a pin to
-		 * another objects pin.
+		 * Do some action before and/or after connect an output pin to
+		 * another objects input pin.
 		 */
 		bool connectOutput (int outPin, VimusMachineObject * dstObj, int inPin);
 
 		/**
-		 * Do some action before and/or after be connected by another
-		 * objects pin.
+		 * Do some action before and/or after connect an input pin to
+		 * another objects output pin.
 		 */
 		bool connectInput (VimusMachineObject * srcObj, int outPin, int inPin);
 
@@ -84,18 +80,16 @@ class VimusMachineCVThreshold : public VimusMachineObject
 		 */
 		void disconnectInput (VimusMachineObject * srcObj, int outPin, int inPin);
 
+		void addInputPin(int type);
+
+		void addOutputPin(int type);
 
     private:
 
-		unsigned char** ppInputData;
+        int indiceNoPd;
 
-		unsigned char** ppOutputData;
-
-		unsigned char** ppNullFrame;
-
-		cv::Mat frame;
-		cv::Mat frameDst;
+        PdMaquina * pd;
 
 };
 
-#endif //_VIMUSMACHINECVTHRESHOLD_H_
+#endif //_VIMUSMACHINEPDOBJECT_H_

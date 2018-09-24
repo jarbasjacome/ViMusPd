@@ -30,67 +30,67 @@
  */
 class VimusMachinePixelAdd : public VimusMachineObject
 {
-    public:
+public:
 
-        /**
-         * VimusMachinePixelAdd default constructor.
-         */
-        VimusMachinePixelAdd();
+    /**
+     * VimusMachinePixelAdd default constructor.
+     */
+    VimusMachinePixelAdd();
 
-        /**
-         * VimusMachinePixelAdd constructor.
-         */
-        VimusMachinePixelAdd(int numInputs, int numOutputs);
+    /**
+     * VimusMachinePixelAdd constructor.
+     */
+    VimusMachinePixelAdd(int numInputs, int numOutputs);
 
-        /**
-         * VimusMachinePixelAdd destructor.
-         */
-        ~VimusMachinePixelAdd();
+    /**
+     * VimusMachinePixelAdd destructor.
+     */
+    ~VimusMachinePixelAdd();
 
-        /**
-         * Update VimusMachinePixelAdd.
-         */
-        void update();
+    /**
+     * Update VimusMachinePixelAdd.
+     */
+    void update();
 
-		/**
-		 * Get pointer to currentFrame buffer pointer.
-		 * This is necessary for GUI have a direct access to
-		 * machine frame buffer.
-		 */
-		unsigned char** getCurrentFramePointer();
+    /**
+     * Get pointer to currentFrame buffer pointer.
+     * This is necessary for GUI have a direct access to
+     * machine frame buffer.
+     */
+    unsigned char** getCurrentFramePointer();
 
-		/**
-		 * Do some action before and/or after connect a pin to
-		 * another objects pin.
-		 */
-		bool connectOutput (int outPin, VimusMachineObject * dstObj, int inPin);
+    /**
+     * Do some action before and/or after connect a pin to
+     * another objects pin.
+     */
+    bool connectOutput (int outPin, VimusMachineObject * dstObj, int inPin);
 
-		/**
-		 * Do some action before and/or after be connected by another
-		 * objects pin.
-		 */
-		bool connectInput (VimusMachineObject * srcObj, int outPin, int inPin);
+    /**
+     * Do some action before and/or after be connected by another
+     * objects pin.
+     */
+    bool connectInput (VimusMachineObject * srcObj, int outPin, int inPin);
 
-		/**
-		 * Do some action before and/or after disconnect an output pin from
-		 * another objects pin.
-		 */
-		void disconnectOutput (int outPin, VimusMachineObject * dstObj, int inPin);
+    /**
+     * Do some action before and/or after disconnect an output pin from
+     * another objects pin.
+     */
+    void disconnectOutput (int outPin, VimusMachineObject * dstObj, int inPin);
 
-		/**
-		 * Do some action before and/or after disconnect an input pin from
-		 * another objects pin.
-		 */
-		void disconnectInput (VimusMachineObject * srcObj, int outPin, int inPin);
+    /**
+     * Do some action before and/or after disconnect an input pin from
+     * another objects pin.
+     */
+    void disconnectInput (VimusMachineObject * srcObj, int outPin, int inPin);
 
 
-    private:
+private:
 
-		unsigned char** ppInputData;
+    unsigned char** ppInputData;
 
-		unsigned char** ppOutputData;
+    unsigned char** ppOutputData;
 
-		unsigned char** ppNullFrame;
+    unsigned char** ppNullFrame;
 
 };
 

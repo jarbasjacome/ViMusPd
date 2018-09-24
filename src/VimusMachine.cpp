@@ -59,7 +59,8 @@ void VimusMachine :: start ()
 
 }
 
-void VimusMachine::stop(){
+void VimusMachine::stop()
+{
 //   	kinect->stopVideo();
 //	kinect->stopDepth();
 

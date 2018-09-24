@@ -24,6 +24,7 @@
 
 #include "cv.h"
 #include "highgui.h"
+#include "opencv2/opencv.hpp"
 
 #include "GL/glut.h"
 #include <boost/thread/xtime.hpp>
@@ -173,8 +174,8 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
 
         float camZ;
 
-        const static float MAX_ZOOM = 10.5f;
-        const static float MIN_ZOOM = 3.0f;
+        constexpr static float MAX_ZOOM = 10.5f;
+        constexpr static float MIN_ZOOM = 3.0f;
 
         boost::xtime tempoAtual;
         boost::xtime ultimoGrabCaptura;
@@ -205,9 +206,9 @@ class VimusMachineLanternaMagica : public VimusMachineOpenGLObject
 
 		unsigned char contrasTransform [256];
 
-        static const float TWO_PI = 2*3.1415926535897932384;
-        static const float PI = 3.1415926535897932384;
-        static const float HALF_PI = 3.1415926535897932384/2;
+        static constexpr float TWO_PI = 2*3.1415926535897932384;
+        static constexpr float PI = 3.1415926535897932384;
+        static constexpr float HALF_PI = 3.1415926535897932384/2;
 
         void playCurrVideo();
         void nextTrack();

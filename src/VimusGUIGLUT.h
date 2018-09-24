@@ -34,7 +34,7 @@
 #include <string>
 #include <sstream>
 
-#include <GL/glut.h>
+#include <GL/freeglut.h>
 #include <boost/thread/xtime.hpp>
 
 

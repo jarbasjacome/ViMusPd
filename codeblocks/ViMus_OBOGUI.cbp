@@ -52,14 +52,17 @@
 			<Add library="openal" />
 			<Add library="libopencv_highgui" />
 			<Add library="libopencv_core" />
+			<Add library="libopencv_imgcodecs" />
 			<Add library="libopencv_imgproc" />
+			<Add library="libopencv_videoio" />
 			<Add library="libboost_thread" />
 			<Add library="libboost_system" />
+			<Add library="pthread" />
 			<Add directory="/usr/lib" />
+			<Add directory="/usr/lib/nvidia" />
 		</Linker>
 		<Unit filename="../src/Configuration.h" />
 		<Unit filename="../src/Freenect.h" />
-		<Unit filename="../src/Machine.h" />
 		<Unit filename="../src/OpenALCapture.cpp" />
 		<Unit filename="../src/OpenALCapture.h" />
 		<Unit filename="../src/OpenALSampler.cpp" />
@@ -69,6 +72,8 @@
 		<Unit filename="../src/OpenALSamplerOriente.cpp" />
 		<Unit filename="../src/OpenALSamplerOriente.h" />
 		<Unit filename="../src/PVector.h" />
+		<Unit filename="../src/PdMaquina.cpp" />
+		<Unit filename="../src/PdMaquina.h" />
 		<Unit filename="../src/VideoCaptureOpenCV.cpp" />
 		<Unit filename="../src/VideoCaptureOpenCV.h" />
 		<Unit filename="../src/VimusGUICube.cpp" />
@@ -111,8 +116,12 @@
 		<Unit filename="../src/VimusMachineOpenGLObject.cpp" />
 		<Unit filename="../src/VimusMachineOpenGLObject.h" />
 		<Unit filename="../src/VimusMachineOriente.h" />
+		<Unit filename="../src/VimusMachinePdObject.cpp" />
+		<Unit filename="../src/VimusMachinePdObject.h" />
 		<Unit filename="../src/VimusMachinePin.cpp" />
 		<Unit filename="../src/VimusMachinePin.h" />
+		<Unit filename="../src/VimusMachinePinAudio.cpp" />
+		<Unit filename="../src/VimusMachinePinAudio.h" />
 		<Unit filename="../src/VimusMachinePinControl.cpp" />
 		<Unit filename="../src/VimusMachinePinControl.h" />
 		<Unit filename="../src/VimusMachinePinVideo.cpp" />

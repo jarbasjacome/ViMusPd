@@ -24,6 +24,8 @@
 
 #include "cv.h"
 #include "highgui.h"
+#include "opencv2/opencv.hpp"
+
 
 #include <boost/thread.hpp>
 #include <boost/thread/xtime.hpp>
@@ -81,6 +83,7 @@ class VideoCaptureOpenCV
 		const static int NUM_MAX_DEVICES = 10;
 
         cv::VideoCapture* videoCapDevices[NUM_MAX_DEVICES];
+
 
         cv::Mat frame[NUM_MAX_DEVICES];
         cv::Mat frameDst[NUM_MAX_DEVICES];

@@ -31,52 +31,52 @@
  */
 class VimusMachinePin
 {
-    public:
+public:
 
-        const static int TYPE_CONTROL = 0;
-        const static int TYPE_AUDIO = 1;
-        const static int TYPE_VIDEO = 2;
+    const static int TYPE_CONTROL = 0;
+    const static int TYPE_AUDIO = 1;
+    const static int TYPE_VIDEO = 2;
 
-        /**
-         * VimusMachinePin default constructor.
-         */
-        VimusMachinePin();
+    /**
+     * VimusMachinePin default constructor.
+     */
+    VimusMachinePin();
 
-        /**
-         * VimusMachinePin destructor.
-         */
-        ~VimusMachinePin();
+    /**
+     * VimusMachinePin destructor.
+     */
+    ~VimusMachinePin();
 
-        /**
-         * Connect to another pin.
-         */
-		bool connect(VimusMachinePin *pin);
+    /**
+     * Connect to another pin.
+     */
+    bool connect(VimusMachinePin *pin);
 
-        /**
-         * Disconnect a pin.
-         */
-        void disconnect(VimusMachinePin *pin);
+    /**
+     * Disconnect a pin.
+     */
+    void disconnect(VimusMachinePin *pin);
 
-        bool isInput;
+    bool isInput;
 
-        int type;
+    int type;
 
-        int numConnections;
+    int numConnections;
 
-        const static int MAX_CONNECTIONS = 30;
-        VimusMachinePin * connections[MAX_CONNECTIONS];
+    const static int MAX_CONNECTIONS = 30;
+    VimusMachinePin * connections[MAX_CONNECTIONS];
 
-        int parentIndex;
+    int parentIndex;
 
-        int indexOnParent;
+    int indexOnParent;
 
-        void setParentIndex(int pIndex);
+    void setParentIndex(int pIndex);
 
-        void setIndexOnParent(int index);
+    void setIndexOnParent(int index);
 
-        void removeConnection(int index);
+    void removeConnection(int index);
 
-    private:
+private:
 
 
 };

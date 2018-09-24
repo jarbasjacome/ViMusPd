@@ -1,0 +1,6 @@
+#N canvas 683 90 683 678 10;
+#X obj 723 318 print;
+#X obj 711 291 netreceive 17780;
+#X obj 711 341 send pd-ViMus_old.pd;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;

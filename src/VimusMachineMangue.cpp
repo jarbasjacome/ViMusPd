@@ -176,7 +176,6 @@ void VimusMachineMangue::update()
         Point2f p;
 
         Point2f tempOrigin1;
-        int tempOrigin1Id = 0;
 
         float radius;
         int countBlobs = 0;

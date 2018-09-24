@@ -121,13 +121,18 @@ void VimusMachineObject :: addInputPin(int type)
 	if (this->numInputs > 0)
 	{
 		if (type == VimusMachinePin::TYPE_VIDEO)
-			inputPins[this->numInputs-1] = new VimusMachinePinVideo (
+        {
+            inputPins[this->numInputs-1] = new VimusMachinePinVideo (
 												true,
 												this->numInputs-1);
-		else
+        }
+		else if (type == VimusMachinePin::TYPE_CONTROL)
+        {
 			inputPins[this->numInputs-1] = new VimusMachinePinControl (
 												true,
 												this->numInputs-1);
+        }
+        //FAZER: erro caso o tipo o pino seja inválido
 	}
 }
 
@@ -145,12 +150,13 @@ void VimusMachineObject :: addOutputPin(int type)
 												false,
 												this->numOutputs-1);
 		}
-		else
+		else if (type == VimusMachinePin::TYPE_CONTROL)
 		{
 			outputPins[this->numOutputs-1] = new VimusMachinePinControl (
 												false,
 												this->numOutputs-1);
 		}
+        //FAZER: erro caso o tipo o pino seja inválido
 	}
 }
 

@@ -29,15 +29,19 @@ VimusMachineEditor :: VimusMachineEditor (VideoCaptureOpenCV* vidCap)//, MyFreen
     this->videoCap = vidCap;
 //    this->kinect = kin;
 
-	this->rootAbsObj = new VimusMachineAbstractionObject ("root");
+    this->rootAbsObj = new VimusMachineAbstractionObject ("root");
 
-	this->currentAbsObj = this->rootAbsObj;
+    this->currentAbsObj = this->rootAbsObj;
 
-	this->numOpenGLObjs = 0;
-	for (int i=0; i<MAX_GL_OBJ; i++)
-	{
-		this->opengGLObjects[i] = NULL;
-	}
+    this->numOpenGLObjs = 0;
+    for (int i=0; i<MAX_GL_OBJ; i++)
+    {
+        this->opengGLObjects[i] = NULL;
+    }
+
+
+    //FAZER: Se não conseguir conectar com o Pd tem que dar um erro!!!
+    this->pd = new PdMaquina();
 
     if (DEBUG_MODE)
         cout << "\nVimusMachineEditor constructed.";
@@ -65,118 +69,174 @@ VimusMachineEditor :: ~VimusMachineEditor()
  * Creates a new machine object.
  */
 VimusGUIObject * VimusMachineEditor :: createObject(const string& label, float posX,
-												float posY, float posZ)
+        float posY, float posZ)
 {
-	VimusGUIObject * guiObj = NULL;
+    VimusGUIObject * guiObj = NULL;
 
-	VimusMachineObject * macObj = NULL;
+    VimusMachineObject * macObj = NULL;
 
-	this->parseMsg (label);
+    this->parseMsg (label);
 
-	if (this->msgTokens.size() > 0)
-	{
-		if (!this->msgTokens[0].compare("abs"))
-		{
-			macObj = new VimusMachineAbstractionObject(label);
-			guiObj = new VimusGUICube(label, posX, posY, posZ, false);
-		}
-		else if (!this->msgTokens[0].compare("video"))
-		{
-			macObj = new VimusMachineVideoPreview();
-			guiObj = new VimusGUIVideoPreview(
-							posX,
-							posY,
-							posZ,
-							((VimusMachineVideoPreview *)
-										macObj)->getCurrentFramePointer()
-						);
-		}
-		else if (!this->msgTokens[0].compare("inlet"))
-		{
-			macObj = new VimusMachineNormalObject(label, 0, 1);
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
-		}
-		else if (!this->msgTokens[0].compare("outlet"))
-		{
-			macObj = new VimusMachineNormalObject(label, 1, 0);
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 1, 0);
+    if (this->msgTokens.size() > 0)
+    {
+        if (!this->msgTokens[0].compare("abs"))
+        {
+            macObj = new VimusMachineAbstractionObject(label);
+            guiObj = new VimusGUICube(label, posX, posY, posZ, false);
+        }
+        else if (!this->msgTokens[0].compare("video"))
+        {
+            macObj = new VimusMachineVideoPreview();
+            guiObj = new VimusGUIVideoPreview(
+                posX,
+                posY,
+                posZ,
+                ((VimusMachineVideoPreview *)
+                 macObj)->getCurrentFramePointer()
+            );
+        }
+        else if (!this->msgTokens[0].compare("inlet"))
+        {
+            macObj = new VimusMachineNormalObject(label, 0, 1);
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
+        }
+        else if (!this->msgTokens[0].compare("outlet"))
+        {
+            macObj = new VimusMachineNormalObject(label, 1, 0);
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 1, 0);
 
-		}
-		else if (!this->msgTokens[0].compare("videocap"))
-		{
-		    //Create VimusMachineVideoCapture passing video capture manager
-			macObj = new VimusMachineVideoCapture(this->videoCap);
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
-		}
-		else if (!this->msgTokens[0].compare("audiocap"))
-		{
-			macObj = new VimusMachineNormalObject(label, 0, 1);
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
-		}
-		else if (!this->msgTokens[0].compare("pixelAdd"))
-		{
-			macObj = new VimusMachinePixelAdd();
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 2, 1);
-		}
-		else if (!this->msgTokens[0].compare("pixelCVThreshold"))
-		{
-			macObj = new VimusMachineCVThreshold();
-			guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 2, 1);
-		}
-		else if (!this->msgTokens[0].compare("pixelCVBlob"))
-		{
-		    VimusMachineCVBlobDetection * blob = new VimusMachineCVBlobDetection();
-			macObj = blob;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, blob);
+        }
+        else if (!this->msgTokens[0].compare("videocap"))
+        {
+            //Create VimusMachineVideoCapture passing video capture manager
+            macObj = new VimusMachineVideoCapture(this->videoCap);
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
+        }
+        else if (!this->msgTokens[0].compare("adc~"))
+        {
+            std::cout << "creating adc~\n";
+            //FAZER: tentar criar no Pd e confirmar se realmente conseguiu criar.
+            pd->criarObjeto("adc~",
+                            (int) pd->PD_PATCH_LARGURA*(1+posX)/2,
+                            (int) pd->PD_PATCH_ALTURA*(1-posY)/2);
+
+            int tiposEntradas[1];
+            tiposEntradas[0] = VimusMachinePin::TYPE_CONTROL;
+
+            int tiposSaidas[2];
+            tiposSaidas[0] = VimusMachinePin::TYPE_AUDIO;
+            tiposSaidas[1] = VimusMachinePin::TYPE_AUDIO;
+
+            macObj = new VimusMachinePdObject("adc~", 1, tiposEntradas, 2,
+                                              tiposSaidas, pd->contaObjetos, this->pd);
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 0, 1);
+            std::cout << "created adc~\n";
+        }
+        else if (!this->msgTokens[0].compare("dac~"))
+        {
+            std::cout << "creating dac~\n";
+            //FAZER: tentar criar no Pd e confirmar se realmente conseguiu criar.
+            pd->criarObjeto("dac~",
+                            (int) pd->PD_PATCH_LARGURA*(1+posX)/2,
+                            (int) pd->PD_PATCH_ALTURA*(1-posY)/2);
+
+            int tiposEntradas[2];
+            tiposEntradas[0] = VimusMachinePin::TYPE_AUDIO;
+            tiposEntradas[1] = VimusMachinePin::TYPE_AUDIO;
+
+            int tiposSaidas[0];
+
+            macObj = new VimusMachinePdObject("dac~", 2, tiposEntradas, 0,
+                                              tiposSaidas, pd->contaObjetos, this->pd);
+
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 2, 0);
+            std::cout << "created dac~\n";
+        }
+        else if (!this->msgTokens[0].compare("osc~"))
+        {
+            std::cout << "creating osc~\n";
+            pd->criarObjeto("osc~ 500",
+                            (int) pd->PD_PATCH_LARGURA*(1+posX)/2,
+                            (int) pd->PD_PATCH_ALTURA*(1-posY)/2);
+
+            int tiposEntradas[2];
+            tiposEntradas[0] = VimusMachinePin::TYPE_CONTROL;
+            tiposEntradas[1] = VimusMachinePin::TYPE_CONTROL;
+
+            int tiposSaidas[1];
+            tiposSaidas[0] = VimusMachinePin::TYPE_AUDIO;
+
+            macObj = new VimusMachinePdObject(label, 2, tiposEntradas, 1,
+                                              tiposSaidas, pd->contaObjetos, this->pd);
+
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 1, 1);
+            std::cout << "created osc~\n";
+        }
+
+        else if (!this->msgTokens[0].compare("pixelAdd"))
+        {
+            macObj = new VimusMachinePixelAdd();
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 2, 1);
+        }
+        else if (!this->msgTokens[0].compare("pixelCVThreshold"))
+        {
+            macObj = new VimusMachineCVThreshold();
+            guiObj = new VimusGUINormalObject(label, posX, posY, posZ, 2, 1);
+        }
+        else if (!this->msgTokens[0].compare("pixelCVBlob"))
+        {
+            VimusMachineCVBlobDetection * blob = new VimusMachineCVBlobDetection();
+            macObj = blob;
+            guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, blob);
 
             this->addOpenGLObject(blob);
-		}
-		else if (!this->msgTokens[0].compare("mangue"))
-		{
-		    VimusMachineMangue * mangue = new VimusMachineMangue();
-			macObj = mangue;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, mangue);
+        }
+        else if (!this->msgTokens[0].compare("mangue"))
+        {
+            VimusMachineMangue * mangue = new VimusMachineMangue();
+            macObj = mangue;
+            guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, mangue);
 
             this->addOpenGLObject(mangue);
-		}
-		else if (!this->msgTokens[0].compare("vitalino"))
-		{
-		    VimusMachineVitalino * vitalino = new VimusMachineVitalino();
-			macObj = vitalino;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, vitalino);
+        }
+        else if (!this->msgTokens[0].compare("vitalino"))
+        {
+            VimusMachineVitalino * vitalino = new VimusMachineVitalino();
+            macObj = vitalino;
+            guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, vitalino);
 
-			this->addOpenGLObject(vitalino);
-		}
-		else if (!this->msgTokens[0].compare("lanterna"))
-		{
-		    VimusMachineLanternaMagica * lanterna = new VimusMachineLanternaMagica();
-			macObj = lanterna;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, lanterna);
+            this->addOpenGLObject(vitalino);
+        }
+        else if (!this->msgTokens[0].compare("lanterna"))
+        {
+            VimusMachineLanternaMagica * lanterna = new VimusMachineLanternaMagica();
+            macObj = lanterna;
+            guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 2, 1, lanterna);
 
-			this->addOpenGLObject(lanterna);
-		}
-		/*
-		else if (!this->msgTokens[0].compare("oriente"))
-		{
-		    VimusMachineOriente * oriente = new VimusMachineOriente(this->kinect);
-			macObj = oriente;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 1, 1, oriente);
+            this->addOpenGLObject(lanterna);
+        }
+        /*
+        else if (!this->msgTokens[0].compare("oriente"))
+        {
+            VimusMachineOriente * oriente = new VimusMachineOriente(this->kinect);
+        	macObj = oriente;
+        	guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 1, 1, oriente);
 
-			this->addOpenGLObject(oriente);
-		} else if (!this->msgTokens[0].compare("coracoes"))
-		{
-		    VimusMachineCoracoes * coracoes = new VimusMachineCoracoes(this->kinect);
-			macObj = coracoes;
-			guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 1, 1, coracoes);
+        	this->addOpenGLObject(oriente);
+        } else if (!this->msgTokens[0].compare("coracoes"))
+        {
+            VimusMachineCoracoes * coracoes = new VimusMachineCoracoes(this->kinect);
+        	macObj = coracoes;
+        	guiObj = new VimusGUIOpenGLObject(label, posX, posY, posZ, 1, 1, coracoes);
 
-			this->addOpenGLObject(coracoes);
-		}
-		*/
+        	this->addOpenGLObject(coracoes);
+        }
+        */
         if (macObj)
-			this->currentAbsObj->addObject(macObj);
-	}
+            this->currentAbsObj->addObject(macObj);
+    }
 
-	return guiObj;
+    return guiObj;
 }
 
 /**
@@ -184,38 +244,38 @@ VimusGUIObject * VimusMachineEditor :: createObject(const string& label, float p
  */
 void VimusMachineEditor :: removeObject(int i)
 {
-	int k;
-	for (int j=0; j<currentAbsObj->objects[i]->numOutputs; j++)
-	{
-		k = currentAbsObj->objects[i]->outputPins[j]->numConnections - 1;
-		while (currentAbsObj->objects[i]->outputPins[j]->numConnections>0)
-		{
-			disconnectPins(	i,
-							j,
-							currentAbsObj->objects[i]->
-								outputPins[j]->connections[k]->parentIndex,
-							currentAbsObj->objects[i]->
-								outputPins[j]->connections[k]->indexOnParent);
-			//TODO: catch exception.
-			k--;
-		}
-	}
-	for (int j=0; j<currentAbsObj->objects[i]->numInputs; j++)
-	{
-		k = currentAbsObj->objects[i]->inputPins[j]->numConnections - 1;
-		while (currentAbsObj->objects[i]->inputPins[j]->numConnections>0)
-		{
-			disconnectPins( currentAbsObj->objects[i]->
-								inputPins[j]->connections[k]->parentIndex,
-							currentAbsObj->objects[i]->
-								inputPins[j]->connections[k]->indexOnParent,
-							i,
-							j);
-			//TODO: catch exception.
-			k--;
-		}
-	}
-	this->currentAbsObj->removeObject(i);
+    int k;
+    for (int j=0; j<currentAbsObj->objects[i]->numOutputs; j++)
+    {
+        k = currentAbsObj->objects[i]->outputPins[j]->numConnections - 1;
+        while (currentAbsObj->objects[i]->outputPins[j]->numConnections>0)
+        {
+            disconnectPins(	i,
+                            j,
+                            currentAbsObj->objects[i]->
+                            outputPins[j]->connections[k]->parentIndex,
+                            currentAbsObj->objects[i]->
+                            outputPins[j]->connections[k]->indexOnParent);
+            //TODO: catch exception.
+            k--;
+        }
+    }
+    for (int j=0; j<currentAbsObj->objects[i]->numInputs; j++)
+    {
+        k = currentAbsObj->objects[i]->inputPins[j]->numConnections - 1;
+        while (currentAbsObj->objects[i]->inputPins[j]->numConnections>0)
+        {
+            disconnectPins( currentAbsObj->objects[i]->
+                            inputPins[j]->connections[k]->parentIndex,
+                            currentAbsObj->objects[i]->
+                            inputPins[j]->connections[k]->indexOnParent,
+                            i,
+                            j);
+            //TODO: catch exception.
+            k--;
+        }
+    }
+    this->currentAbsObj->removeObject(i);
 }
 
 /**
@@ -223,8 +283,20 @@ void VimusMachineEditor :: removeObject(int i)
  */
 bool VimusMachineEditor :: connectPins(int srcObj, int outPin, int dstObj, int inPin)
 {
-	return this->currentAbsObj->objects[srcObj]->connectOutput(
-					outPin, this->currentAbsObj->objects[dstObj], inPin);
+    std::cout << "\nTentando conectar pinos";
+    bool ret = false;
+
+    ret = this->currentAbsObj->objects[srcObj]->connectOutput(
+              outPin, this->currentAbsObj->objects[dstObj], inPin);
+
+    if (DEBUG_MODE)
+    {
+        if (ret)
+        {
+            std::cout << "\nConectou os pinos!";
+        }
+    }
+    return ret;
 }
 
 /**
@@ -232,8 +304,8 @@ bool VimusMachineEditor :: connectPins(int srcObj, int outPin, int dstObj, int i
  */
 void VimusMachineEditor :: disconnectPins(int srcObj, int outPin, int dstObj, int inPin)
 {
-	this->currentAbsObj->objects[srcObj]->disconnectOutput(
-			outPin, this->currentAbsObj->objects[dstObj], inPin);
+    this->currentAbsObj->objects[srcObj]->disconnectOutput(
+        outPin, this->currentAbsObj->objects[dstObj], inPin);
 }
 
 /**
@@ -241,18 +313,18 @@ void VimusMachineEditor :: disconnectPins(int srcObj, int outPin, int dstObj, in
  */
 void VimusMachineEditor :: parseMsg (const string& msg)
 {
-	msgTokens.clear();
+    msgTokens.clear();
 
-	size_t found;
-	int last_pos = -1;
-	found=msg.find_first_of(" ");
-	while (found!=string::npos)
-	{
-		msgTokens.push_back(msg.substr(last_pos+1, found-(last_pos+1)));
-		last_pos = found;
-		found=msg.find_first_of(" ",found+1);
-	}
-	msgTokens.push_back(msg.substr(last_pos+1, msg.size()-(last_pos+1)));
+    size_t found;
+    int last_pos = -1;
+    found=msg.find_first_of(" ");
+    while (found!=string::npos)
+    {
+        msgTokens.push_back(msg.substr(last_pos+1, found-(last_pos+1)));
+        last_pos = found;
+        found=msg.find_first_of(" ",found+1);
+    }
+    msgTokens.push_back(msg.substr(last_pos+1, msg.size()-(last_pos+1)));
 }
 
 /**
@@ -260,15 +332,15 @@ void VimusMachineEditor :: parseMsg (const string& msg)
  */
 void VimusMachineEditor :: setCurrentAbsObj (int objIndex)
 {
-	if (objIndex >= 0 && objIndex < this->currentAbsObj->numObjects)
-	{
-		if (currentAbsObj->objects[objIndex]->isAbstractionObject)
-		{
+    if (objIndex >= 0 && objIndex < this->currentAbsObj->numObjects)
+    {
+        if (currentAbsObj->objects[objIndex]->isAbstractionObject)
+        {
 
-			currentAbsObj = (VimusMachineAbstractionObject *)
-											currentAbsObj->objects[objIndex];
-		}
-	}
+            currentAbsObj = (VimusMachineAbstractionObject *)
+                            currentAbsObj->objects[objIndex];
+        }
+    }
 }
 
 /**
@@ -276,17 +348,17 @@ void VimusMachineEditor :: setCurrentAbsObj (int objIndex)
  */
 void VimusMachineEditor :: setCurrentAbsObj (const string& objName)
 {
-	bool found = false;
-	int c = 0;
-	while (found == false && c < this->currentAbsObj->numObjects)
-	{
-		if (!objName.compare(this->currentAbsObj->objects[c]->label))
-		{
-			setCurrentAbsObj(c);
-			found = true;
-		}
-		c++;
-	}
+    bool found = false;
+    int c = 0;
+    while (found == false && c < this->currentAbsObj->numObjects)
+    {
+        if (!objName.compare(this->currentAbsObj->objects[c]->label))
+        {
+            setCurrentAbsObj(c);
+            found = true;
+        }
+        c++;
+    }
 }
 
 /**
@@ -294,9 +366,9 @@ void VimusMachineEditor :: setCurrentAbsObj (const string& objName)
  */
 void VimusMachineEditor :: setCurrentAbsObjToParent ()
 {
-	if (this->currentAbsObj->parentAbsObj)
-		this->currentAbsObj = (VimusMachineAbstractionObject *)
-												this->currentAbsObj->parentAbsObj;
+    if (this->currentAbsObj->parentAbsObj)
+        this->currentAbsObj = (VimusMachineAbstractionObject *)
+                              this->currentAbsObj->parentAbsObj;
 }
 
 /**
@@ -304,7 +376,7 @@ void VimusMachineEditor :: setCurrentAbsObjToParent ()
  */
 VimusMachineAbstractionObject * VimusMachineEditor ::getRootAbsObj ()
 {
-	return this->rootAbsObj;
+    return this->rootAbsObj;
 }
 
 /**
@@ -317,7 +389,7 @@ void VimusMachineEditor :: addOpenGLObject(VimusMachineOpenGLObject* obj)
     if (numOpenGLObjs < MAX_GL_OBJ)
     {
         opengGLObjects[numOpenGLObjs] = obj;
-		numOpenGLObjs++;
+        numOpenGLObjs++;
     }
 }
 

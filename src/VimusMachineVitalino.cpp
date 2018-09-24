@@ -249,8 +249,6 @@ void VimusMachineVitalino::draw()
 
     float adjustPos = -0.66f;
 
-    int corSensivel = 0;
-
     float razao = 48.0f;
 
     int res = 1;

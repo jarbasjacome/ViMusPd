@@ -46,28 +46,3 @@ VimusMachinePinControl::~VimusMachinePinControl()
 {
 }
 
-/**
- * Connect to another pin.
- */
-void VimusMachinePinControl::connect(VimusMachinePin *pin)
-{
-	//pin->ppFrame = this->ppFrame;
-}
-
-/**
- * Disconnect a pin.
- */
-void VimusMachinePinControl::disconnect(VimusMachinePinControl *pin)
-{
-    for (int i=0; i<numConnections; i++)
-    {
-        // check if it is really connected.
-        if ((connections[i]->indexOnParent == pin->indexOnParent)
-            && (connections[i]->parentIndex == pin->parentIndex))
-        {
-            removeConnection(i);
-            pin->disconnect(this);
-            return;
-        }
-    }
-}

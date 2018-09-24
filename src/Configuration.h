@@ -36,7 +36,7 @@
 #include <windows.h>
 #endif
 
-#define DEBUG_MODE      false
+#define DEBUG_MODE      true
 
 // Performance settings
 #define MAX_FRAME_RATE  60
@@ -47,7 +47,7 @@
 #define WINDOW_HEIGHT	480
 #define WINDOW_POSX		100
 #define WINDOW_POSY		100
-#define WINDOW_NAME		"ViMus"
+#define WINDOW_NAME		"ViMus+Pd"
 
 // Display settings
 #define SCREEN_FORMAT			0.8		// SECREEN_FORMAT = height/width

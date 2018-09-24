@@ -1,5 +1,5 @@
 /**
- * Copyright 2007-2011 Jarbas Jácome
+ * Copyright 2007-2014 Jarbas Jácome
  *
  * This file is part of ViMus.
  *
@@ -17,28 +17,35 @@
  * along with ViMus.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "VimusMachinePinAudio.h"
+
+using namespace std;
+
 /**
- * Função principal (main) do ViMus
+ * VimusMachinePinAudio constructor.
  */
-#include "VimusGUIGLUT.h"
-
-#include "VimusMachine.h"
-
-int main(int argc, char** argv)
+VimusMachinePinAudio::VimusMachinePinAudio (bool isInput, int index, PdMaquina* pd)
 {
-	VimusMachine * vimusMachine = new VimusMachine ();
+    parentIndex = -1;
+    indexOnParent = index;
+	this->type = VimusMachinePin::TYPE_AUDIO;
+    this->isInput = isInput;
+    this->pd = pd;
 
-	vimusMachine->start();
+    for (int i=0; i<MAX_CONNECTIONS; i++)
+        connections[i] = NULL;
+    numConnections = 0;
 
-	VimusGUIGLUT gui; //Singleton para interface gráfica (ver Padrão de Projeto Singleton).
-
-	gui.initGLUT(argc,argv);
-
-    gui.addMachine(vimusMachine);
-
-    gui.createTestPatch();
-
-	gui.start();
-
-	return 0;
+    if (DEBUG_MODE)
+        cout << "\nVimusMachinePinAudio constructed.";
 }
+
+/**
+ * VimusMachinePinAudio destructor.
+ */
+VimusMachinePinAudio::~VimusMachinePinAudio()
+{
+}
+
+
+

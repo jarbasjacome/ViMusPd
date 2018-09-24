@@ -22,9 +22,8 @@
 using namespace std;
 
 /**
- * Vimus User Interface Singleton object, to make it possible to
- * call non-static member functions from GLUT callback
- * function like keyBoardFunc, displayFunc.
+ * Objeto Singleton da Interface de Usuário, para ser possível chamar funções
+ * (métodos) não-estáticos das funções de callback do GLUT como keyBoardFunc
  */
 VimusGUIGLUT * VimusGUIGLUT::vimusUIPtr = new VimusGUIGLUT();
 
@@ -33,7 +32,6 @@ VimusGUIGLUT * VimusGUIGLUT::vimusUIPtr = new VimusGUIGLUT();
  */
 VimusGUIGLUT :: VimusGUIGLUT()
 {
-    //this->editor = new VimusGUIEditor();
 }
 
 /**
@@ -47,129 +45,18 @@ VimusGUIGLUT :: ~VimusGUIGLUT()
 }
 
 /**
- * This method is called by keyMouseStaticFunc when
- * mouse button is pressed or released.
- * When a user presses and releases mouse buttons in the window,
- * each press and each release generates a mouse callback.
- * This function can call non-static function members.
- *
- * @param int button is GLUT_LEFT_BUTTON,  GLUT_MIDDLE_BUTTON, or  GLUT_RIGHT_BUTTON.
- * @param int state is GLUT_UP or GLUT_DOWN.
- * @param int x cursor position.
- * @param int y cursor position.
+ * Register all callback functions.
+ * Must be called always after window creation.
  */
-void VimusGUIGLUT ::mouseFunc(int button, int state, int x, int y)
+void VimusGUIGLUT::registerCallbackFunctions ()
 {
-    vimusUIPtr->editor->mouseFunc(button, state, x, y);
-}
-
-/**
- * This method is called by keyMotionStaticFunc when the mouse moves within
- * the window while one or more mouse buttons are pressed.
- *
- * This function can call non-static function members.
- *
- * @param int x cursor position.
- * @param int y cursor position.
- */
-void VimusGUIGLUT::motionFunc(int x, int y)
-{
-    vimusUIPtr->editor->motionFunc(x, y);
-}
-
-/**
- * This method is called by keyPassiveMotionStaticFunc when the mouse moves
- * within the window while no mouse buttons are pressed.
- *
- * This function can call non-static function members.
- *
- * @param int x cursor position.
- * @param int y cursor position.
- */
-void VimusGUIGLUT::passiveMotionFunc(int x, int y)
-{
-    vimusUIPtr->editor->passiveMotionFunc(x, y);
-}
-
-/**
- * This method is called by keyBoardStaticFunc when a
- * key is pressed.
- * This function can call non-static function members.
- *
- * @param key unsigned char corresponding to key pressed
- * @param x cursor position. Type: int
- * @param y cursor position. Type: int
- */
-void VimusGUIGLUT ::keyBoardFunc(unsigned char key,
-													  int x, int y)
-{
-    switch (key)
-	{
-		case 27:
-			finish();
-			break;
-    }
-    vimusUIPtr->editor->keyBoardFunc(key, x, y);
-}
-
-/**
- * This method is called by GLUT when a special key is pressed.
- * This function can call non-static function members.
- *
- * @param key int corresponding to key pressed
- * @param x cursor position. Type: int
- * @param y cursor position. Type: int
- */
-void VimusGUIGLUT ::specialKeyBoardFunc(int key, int x, int y)
-{
-	switch (key)
-	{
-        case GLUT_KEY_F11:
-            if (glutGameModeGet(GLUT_GAME_MODE_ACTIVE))
-            {
-                glutLeaveGameMode();
-
-                //initialize window size.
-                glutInitWindowSize (WINDOW_WIDTH, WINDOW_HEIGHT);
-
-                //initialize window position.
-                glutInitWindowPosition (WINDOW_POSX, WINDOW_POSY);
-
-                //create new OpenGL window.
-                glutCreateWindow (WINDOW_NAME);
-
-                glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-
-                vimusUIPtr->registerCallbackFunctions();
-
-            }
-            else
-            {
-                glutDestroyWindow(glutGetWindow());
-                std::ostringstream resolutionStream;
-                std::string resolutionString;
-                resolutionStream << glutGet(GLUT_SCREEN_WIDTH)
-                                 << "x"
-                                 << glutGet(GLUT_SCREEN_HEIGHT)
-                                 << ":32@60";
-                resolutionString = resolutionStream.str();
-                char* resChar = new char[256];
-                resolutionString.copy(resChar, resolutionString.size(), 0);
-                resChar[resolutionString.size()]='\0';
-
-                glutGameModeString( resChar );
-
-                // start fullscreen game mode
-                glutEnterGameMode();
-
-                //show cursor at fullscreen mode.
-                glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-
-                vimusUIPtr->registerCallbackFunctions();
-            }
-            break;
-	}
-    vimusUIPtr->editor->specialKeyBoardFunc(key, x, y);
+    glutDisplayFunc(this->displayStaticFunc);
+    glutMouseFunc(this->mouseStaticFunc);
+    glutMotionFunc(this->motionStaticFunc);
+    glutPassiveMotionFunc(this->passiveMotionStaticFunc);
+	glutKeyboardFunc(this->keyBoardStaticFunc);
+	glutSpecialFunc(this->specialKeyBoardStaticFunc);
+	glutIdleFunc(this->idleStaticFunc);
 }
 
 /**
@@ -227,9 +114,15 @@ void VimusGUIGLUT :: start()
 void VimusGUIGLUT :: finish()
 {
     vimusUIPtr->machine->stop();
+    glutLeaveGameMode();
 	if (glutGetWindow()) {
 		glutDestroyWindow(glutGetWindow());
 	}
+    glutLeaveMainLoop();
+
+    //TODO: checar por que quando sai do ViMus no ratpoison ele
+    //não volta o foco para a janela de quam chamou o ViMus
+    //obrigando a gente a fechar esse programa para continuar
 }
 
 /**
@@ -311,16 +204,128 @@ void VimusGUIGLUT :: initGLUT(int argc, char** argv)
 }
 
 /**
- * Register all callback functions.
- * Must be called always after window creation.
+ * This method is called by keyMouseStaticFunc when
+ * mouse button is pressed or released.
+ * When a user presses and releases mouse buttons in the window,
+ * each press and each release generates a mouse callback.
+ * This function can call non-static function members.
+ *
+ * @param int button is GLUT_LEFT_BUTTON,  GLUT_MIDDLE_BUTTON, or  GLUT_RIGHT_BUTTON.
+ * @param int state is GLUT_UP or GLUT_DOWN.
+ * @param int x cursor position.
+ * @param int y cursor position.
  */
-void VimusGUIGLUT::registerCallbackFunctions ()
+void VimusGUIGLUT ::mouseFunc(int button, int state, int x, int y)
 {
-    glutDisplayFunc(this->displayStaticFunc);
-    glutMouseFunc(this->mouseStaticFunc);
-    glutMotionFunc(this->motionStaticFunc);
-    glutPassiveMotionFunc(this->passiveMotionStaticFunc);
-	glutKeyboardFunc(this->keyBoardStaticFunc);
-	glutSpecialFunc(this->specialKeyBoardStaticFunc);
-	glutIdleFunc(this->idleStaticFunc);
+    vimusUIPtr->editor->mouseFunc(button, state, x, y);
+}
+
+/**
+ * This method is called by keyMotionStaticFunc when the mouse moves within
+ * the window while one or more mouse buttons are pressed.
+ *
+ * This function can call non-static function members.
+ *
+ * @param int x cursor position.
+ * @param int y cursor position.
+ */
+void VimusGUIGLUT::motionFunc(int x, int y)
+{
+    vimusUIPtr->editor->motionFunc(x, y);
+}
+
+/**
+ * This method is called by keyPassiveMotionStaticFunc when the mouse moves
+ * within the window while no mouse buttons are pressed.
+ *
+ * This function can call non-static function members.
+ *
+ * @param int x cursor position.
+ * @param int y cursor position.
+ */
+void VimusGUIGLUT::passiveMotionFunc(int x, int y)
+{
+    vimusUIPtr->editor->passiveMotionFunc(x, y);
+}
+
+/**
+ * This method is called by keyBoardStaticFunc when a
+ * key is pressed.
+ * This function can call non-static function members.
+ *
+ * @param key unsigned char corresponding to key pressed
+ * @param x cursor position. Type: int
+ * @param y cursor position. Type: int
+ */
+void VimusGUIGLUT ::keyBoardFunc(unsigned char key,
+													  int x, int y)
+{
+    switch (key)
+	{
+		case 27:
+			finish();
+			break;
+        default:
+            vimusUIPtr->editor->keyBoardFunc(key, x, y);
+    }
+}
+
+/**
+ * This method is called by GLUT when a special key is pressed.
+ * This function can call non-static function members.
+ *
+ * @param key int corresponding to key pressed
+ * @param x cursor position. Type: int
+ * @param y cursor position. Type: int
+ */
+void VimusGUIGLUT ::specialKeyBoardFunc(int key, int x, int y)
+{
+	switch (key)
+	{
+        case GLUT_KEY_F11:
+            if (glutGameModeGet(GLUT_GAME_MODE_ACTIVE))
+            {
+                glutLeaveGameMode();
+
+                //initialize window size.
+                glutInitWindowSize (WINDOW_WIDTH, WINDOW_HEIGHT);
+
+                //initialize window position.
+                glutInitWindowPosition (WINDOW_POSX, WINDOW_POSY);
+
+                //create new OpenGL window.
+                glutCreateWindow (WINDOW_NAME);
+
+                glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+
+                vimusUIPtr->registerCallbackFunctions();
+
+            }
+            else
+            {
+                glutDestroyWindow(glutGetWindow());
+                std::ostringstream resolutionStream;
+                std::string resolutionString;
+                resolutionStream << glutGet(GLUT_SCREEN_WIDTH)
+                                 << "x"
+                                 << glutGet(GLUT_SCREEN_HEIGHT)
+                                 << ":32@60";
+                resolutionString = resolutionStream.str();
+                char* resChar = new char[256];
+                resolutionString.copy(resChar, resolutionString.size(), 0);
+                resChar[resolutionString.size()]='\0';
+
+                glutGameModeString( resChar );
+
+                // start fullscreen game mode
+                glutEnterGameMode();
+
+                //show cursor at fullscreen mode.
+                glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+
+                vimusUIPtr->registerCallbackFunctions();
+            }
+            break;
+	}
+    vimusUIPtr->editor->specialKeyBoardFunc(key, x, y);
 }

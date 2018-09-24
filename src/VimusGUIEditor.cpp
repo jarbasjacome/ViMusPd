@@ -39,7 +39,7 @@ VimusGUIEditor::VimusGUIEditor()
     resetEditorState();
     connectingPin = NULL;
 
-    mainCube = new VimusGUICube("ViMus", 0.0, 0.0, 0.0, true);
+    mainCube = new VimusGUICube("ViMus+Pd", 0.0, 0.0, 0.0, true);
 	currentCube = mainCube;
     mainCube->maximize();
 	mainCube->setCurrentSide(VimusGUIObject::SIDE_CONTROLPANEL);
@@ -216,17 +216,26 @@ void VimusGUIEditor::keyBoardFunc(unsigned char key, int x, int y)
 		case 's':
 			this->createObject("mangue", 0.0, -0.6, 0.0);
 			break;
-        case 'm':
+        case 'n':
             this->createObject("vitalino", 0.0, -0.6, 0.0);
             break;
         case 'l':
             this->createObject("lanterna", 0.2, -0.5, 0.0);
             break;
-        case 'o':
+        case 'O':
             this->createObject("oriente", -0.2, -0.5, 0.0);
             break;
         case 'r':
             this->createObject("coracoes", 0.2, 0.5, 0.0);
+            break;
+        case 'a':
+            this->createObject("adc~", -0.5, 0.5, 0.0);
+            break;
+        case 'd':
+            this->createObject("dac~", -0.5, -0.5, 0.0);
+            break;
+        case 'o':
+            this->createObject("osc~", -0.5, 0, 0.0);
             break;
         case 127:
 		case 8:
@@ -1348,11 +1357,11 @@ void VimusGUIEditor :: createTestPatch()
 //    VimusGUINormalObject * vazio = new VimusGUINormalObject(0.2, -1.0, 0.0);
 //    mainCube->addObject(vazio);
 
-/*
+//*
     this->connectPins(  0, objArrayVJapp[0]->getOutputByIndex(0)->indexOnParent,
                         1, objArrayVJapp[1]->getInputByIndex(0)->indexOnParent);
 
-/*
+//*
     this->connectPins(  0, objArrayVJapp[0]->getOutputByIndex(1)->indexOnParent,
                         1, objArrayVJapp[1]->getInputByIndex(1)->indexOnParent);
 
@@ -1364,7 +1373,7 @@ void VimusGUIEditor :: createTestPatch()
 
     this->connectPins(  1, objArrayVJapp[1]->getOutputByIndex(1)->indexOnParent,
                         0, objArrayVJapp[0]->getInputByIndex(0)->indexOnParent);
-*/
+//*/
 
 /*
     VimusGUIObject* videocap1 =	this->createObject("videocap", -0.5, 0.6, 0.0);
@@ -1430,4 +1439,7 @@ void VimusGUIEditor :: createTestPatch()
     if (DEBUG_MODE)
         cout << "\nCreated a test patch.";
 */
+
+//	this->setCurrentCubeToParent();
+
 }

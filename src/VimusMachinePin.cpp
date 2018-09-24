@@ -42,6 +42,7 @@ VimusMachinePin::~VimusMachinePin()
  */
 bool VimusMachinePin::connect(VimusMachinePin *pin)
 {
+
 	bool connected = false;
 	if (numConnections >= MAX_CONNECTIONS)
 	{
@@ -71,6 +72,7 @@ bool VimusMachinePin::connect(VimusMachinePin *pin)
                 return false;
 			}
         }
+
         connections[numConnections] = pin;
         numConnections++;
 

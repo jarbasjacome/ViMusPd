@@ -21,9 +21,15 @@
 #define _VIMUSMACHINEEDITOR_H_
 
 #include "VimusMachineObjects.h"
+
+#include "VimusMachinePdObject.h"
+
 #include "VimusGUIObjects.h"
 #include "VideoCaptureOpenCV.h"
+
 //#include "Freenect.h"
+
+
 
 #include <string>
 #include <sstream>
@@ -148,6 +154,11 @@ class VimusMachineEditor
 		 VideoCaptureOpenCV* videoCap;
 
         //MyFreenectDevice* kinect;
+
+        /**
+         * Referência a PdMaquina.
+         */
+         PdMaquina* pd; //TODO: singleton
 
 };
 #endif //_VIMUSMACHINEEDITOR_H_

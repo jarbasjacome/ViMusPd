@@ -100,20 +100,20 @@ VimusMachineLanternaMagica::VimusMachineLanternaMagica()
                                 GL_UNSIGNED_BYTE, this->distorcedFrame);
     try
     {
-        video[0] = VideoCapture("/dados/data/jabahpureza/video_samples/dear_friends_raw_i420_noaudio.avi");
-        video[1] = VideoCapture("/dados/data/jabahpureza/video_samples/soul_of_the_funky_drummers_raw_i420_noaudio.avi");
-        video[2] = VideoCapture("/dados/data/jabahpureza/video_samples/cold_sweat_01_raw_i420_noaudio.avi");
-        video[3] = VideoCapture("/dados/data/jabahpureza/video_samples/funky_drummer_01_raw_i420_noaudio.avi");
-        video[4] = VideoCapture("/dados/data/jabahpureza/video_samples/do_it_to_death_01_raw_i420_noaudio.avi");
-        video[5] = VideoCapture("/dados/data/jabahpureza/video_samples/make_it_funky_01_raw_i420_noaudio.avi");
-        video[6] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_1.avi");
-        video[7] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_2.avi");
-        video[8] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_3.avi");
-        video[9] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_4.avi");
-        video[10] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_5.avi");
-        video[11] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_6.avi");
-        video[12] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_7.avi");
-        video[13] = VideoCapture("/dados/data/jabahpureza/video_samples/tony_8.avi");
+        video[0] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/dear_friends_raw_i420_noaudio.avi");
+        video[1] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/soul_of_the_funky_drummers_raw_i420_noaudio.avi");
+        video[2] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/cold_sweat_01_raw_i420_noaudio.avi");
+        video[3] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/funky_drummer_01_raw_i420_noaudio.avi");
+        video[4] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/do_it_to_death_01_raw_i420_noaudio.avi");
+        video[5] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/make_it_funky_01_raw_i420_noaudio.avi");
+        video[6] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_1.avi");
+        video[7] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_2.avi");
+        video[8] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_3.avi");
+        video[9] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_4.avi");
+        video[10] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_5.avi");
+        video[11] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_6.avi");
+        video[12] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_7.avi");
+        video[13] = VideoCapture("/dados/Dropbox/data/jabahpureza/video_samples/tony_8.avi");
     }
     catch ( ... )
     {
@@ -637,7 +637,7 @@ void VimusMachineLanternaMagica::draw()
 
             glColor4f(1.0f, 1.0f, 1.0f, vol);
 
-            desenhaRaio(0,0, random(0, TWO_PI), 0.2, 3 + 8*vol, 0, true);
+            desenhaRaio(0,0, random(0, TWO_PI), 0.2, 3 + 32*vol, 0, true);
 
             break;
     }
