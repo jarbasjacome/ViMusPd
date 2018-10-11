@@ -21,11 +21,11 @@
 #define _VIMUSMACHINECORACOES_H_
 
 #include "VimusMachineOpenGLObject.h"
-//#include "Freenect.h"
+#include "Freenect.h"
 #include "OpenALSamplerCoracoes.h"
 #include "PVector.h"
 
-#include "GL/glut.h"
+#include <GL/glut.h>
 #include <boost/thread.hpp>
 #include <boost/thread/xtime.hpp>
 #include <boost/math/constants/constants.hpp>
@@ -36,21 +36,21 @@ class Coracao {
 
 public:
 
-  static const int ULTIMA_GERACAO = 10;
-  static const int NUM_MAX_CORACOES = 1025; //deve ser 2^ULTIMA_GERACAO + 1
+  static constexpr int ULTIMA_GERACAO = 10;
+  static constexpr int NUM_MAX_CORACOES = 1025; //deve ser 2^ULTIMA_GERACAO + 1
 
-  static const float ATRITO = 0.6;
-  static const float MOLA = 0.05;
-  static const float LARGURA_INICIAL = 500.0;
-  static const float ALTURA_INICIAL = 500.0;
-  static const float DIMINUICAO = 0.8;
-  static const float VEL_INICIAL = 8.0;
-  static const float VEL_FRENESI = 4;
-  static const float VEL_GIRO = 0.2;
+  static constexpr float ATRITO = 0.6;
+  static constexpr float MOLA = 0.05;
+  static constexpr float LARGURA_INICIAL = 500.0;
+  static constexpr float ALTURA_INICIAL = 500.0;
+  static constexpr float DIMINUICAO = 0.8;
+  static constexpr float VEL_INICIAL = 8.0;
+  static constexpr float VEL_FRENESI = 4;
+  static constexpr float VEL_GIRO = 0.2;
 
-  static const float TWO_PI = 2*3.1415926535897932384;
-  static const float PI = 3.1415926535897932384;
-  static const float HALF_PI = 3.1415926535897932384/2;
+  static constexpr float TWO_PI = 2*3.1415926535897932384;
+  static constexpr float PI = 3.1415926535897932384;
+  static constexpr float HALF_PI = 3.1415926535897932384/2;
 
     boost::xtime tempoAtual;
     boost::xtime tempoBatimento;
@@ -86,11 +86,11 @@ public:
 
   int geracao;
 
-//  static const int width = 800;
-//  static const int height = 1280;
+//  static constexpr int width = 800;
+//  static constexpr int height = 1280;
 
-    static const int width = 1280;
-    static const int height = 800;
+    static constexpr int width = 1280;
+    static constexpr int height = 800;
 
     Coracao () {
         GLfloat ctrlp[4][3] = {
@@ -347,9 +347,9 @@ class VimusMachineCoracoes : public VimusMachineOpenGLObject
         boost::xtime tempoFrenesi;
         double tempoPassadoMSegs;
 
-        static const float TWO_PI = 2*3.1415926535897932384;
-        static const float PI = 3.1415926535897932384;
-        static const float HALF_PI = 3.1415926535897932384/2;
+        static constexpr float TWO_PI = 2*3.1415926535897932384;
+        static constexpr float PI = 3.1415926535897932384;
+        static constexpr float HALF_PI = 3.1415926535897932384/2;
 
 		MyFreenectDevice* kinect;
 
@@ -359,8 +359,8 @@ class VimusMachineCoracoes : public VimusMachineOpenGLObject
         float kinectY;
         float kinectZ;
 
-        static const float DIST_MAX = 150;
-        static const float DIST_MIN = 70;
+        static constexpr float DIST_MAX = 150;
+        static constexpr float DIST_MIN = 70;
 
         bool preview;
 
@@ -369,7 +369,7 @@ class VimusMachineCoracoes : public VimusMachineOpenGLObject
         double kinectAngulo;
 
         //define intervalo de tempo em segundos entre pulso de frenesi e outro
-        static const float INTERVALO_FRENESI = 20;
+        static constexpr float INTERVALO_FRENESI = 20;
 
         float opacidade;
 

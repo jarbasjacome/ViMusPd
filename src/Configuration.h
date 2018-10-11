@@ -47,7 +47,7 @@
 #define WINDOW_HEIGHT	480
 #define WINDOW_POSX		100
 #define WINDOW_POSY		100
-#define WINDOW_NAME		"ViMus+Pd"
+#define WINDOW_NAME		"ViMusPd"
 
 // Display settings
 #define SCREEN_FORMAT			0.8		// SECREEN_FORMAT = height/width

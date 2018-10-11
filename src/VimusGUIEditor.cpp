@@ -39,7 +39,7 @@ VimusGUIEditor::VimusGUIEditor()
     resetEditorState();
     connectingPin = NULL;
 
-    mainCube = new VimusGUICube("ViMus+Pd", 0.0, 0.0, 0.0, true);
+    mainCube = new VimusGUICube("ViMusPd", 0.0, 0.0, 0.0, true);
 	currentCube = mainCube;
     mainCube->maximize();
 	mainCube->setCurrentSide(VimusGUIObject::SIDE_CONTROLPANEL);

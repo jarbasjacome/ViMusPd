@@ -21,11 +21,11 @@
 #define _VIMUSMACHINEORIENTE_H_
 
 #include "VimusMachineOpenGLObject.h"
-//#include "Freenect.h"
+#include "Freenect.h"
 #include "OpenALSamplerOriente.h"
 #include "PVector.h"
 
-#include "GL/glut.h"
+#include <GL/glut.h>
 #include <boost/thread.hpp>
 #include <boost/thread/xtime.hpp>
 #include <boost/math/constants/constants.hpp>
@@ -128,8 +128,8 @@ class VimusMachineOriente : public VimusMachineOpenGLObject
         boost::xtime tempoCabecaBaixa;
         double tempoPassadoMSegs;
 
-        static const int INTERVALO_GIRANDO = 28000; //De preferencia menor que 37000 (37 segundos) pro final ficar melhor
-        static const int INTERVALO_DESAPARECENDO = 5000;
+        static constexpr int INTERVALO_GIRANDO = 28000; //De preferencia menor que 37000 (37 segundos) pro final ficar melhor
+        static constexpr int INTERVALO_DESAPARECENDO = 5000;
 
 		MyFreenectDevice* kinect;
 
@@ -144,11 +144,11 @@ class VimusMachineOriente : public VimusMachineOpenGLObject
 
         double kinectAngulo;
 
-        static const int NUM_ESTADOS=4;
-        static const int ESTADO_CABECA_BAIXA=0;
-        static const int ESTADO_APARECENDO=1;
-        static const int ESTADO_CONSTRUINDO=2;
-        static const int ESTADO_COMPLETA=3;
+        static constexpr int NUM_ESTADOS=4;
+        static constexpr int ESTADO_CABECA_BAIXA=0;
+        static constexpr int ESTADO_APARECENDO=1;
+        static constexpr int ESTADO_CONSTRUINDO=2;
+        static constexpr int ESTADO_COMPLETA=3;
 
         int estado;
 
@@ -164,25 +164,25 @@ class VimusMachineOriente : public VimusMachineOpenGLObject
 
         //define número de linhas diagonais da teia
         //linhas diagonais são as que vão de lado ao outro da base
-        static const int NUM_RAIOS = 30;
+        static constexpr int NUM_RAIOS = 30;
         //define número de pontos de conexão em cada raio
-        static const int NUM_PONTOS_RAIO = 50;
-        static const int ESPACAMENTO_ESPIRAL = 15;
-        static const float CURVA_ESPIRAL = 0.03;
+        static constexpr int NUM_PONTOS_RAIO = 50;
+        static constexpr int ESPACAMENTO_ESPIRAL = 15;
+        static constexpr float CURVA_ESPIRAL = 0.03;
         //define o número máximo de pontos da espiral principal
-        static const int MAX_NUM_PONTOS_ESPIRAL = 5000;
+        static constexpr int MAX_NUM_PONTOS_ESPIRAL = 5000;
         //define número de pontos da base da teia
-        static const int NUM_PONTOS_BASE = 4;
-        static const int NUM_PONTOS_BASE_CENTRO = NUM_RAIOS;
-        static const int TAM_BASE_CENTRO = 10;
-        static const float ABAULAMENTO = 5; //DE 0 A 1
-        static const int INICIO_TEIA = 20;
-        static const int FIM_TEIA = 1200;
-        static const int INTERVALO_CONSTRUCAO = 1000;
+        static constexpr int NUM_PONTOS_BASE = 4;
+        static constexpr int NUM_PONTOS_BASE_CENTRO = NUM_RAIOS;
+        static constexpr int TAM_BASE_CENTRO = 10;
+        static constexpr float ABAULAMENTO = 5; //DE 0 A 1
+        static constexpr int INICIO_TEIA = 20;
+        static constexpr int FIM_TEIA = 1200;
+        static constexpr int INTERVALO_CONSTRUCAO = 1000;
 
-        static const float TWO_PI = 2*3.1415926535897932384;
-        static const float PI = 3.1415926535897932384;
-        static const float HALF_PI = 3.1415926535897932384/2;
+        static constexpr float TWO_PI = 2*3.1415926535897932384;
+        static constexpr float PI = 3.1415926535897932384;
+        static constexpr float HALF_PI = 3.1415926535897932384/2;
 
         //armazena os pontos da espiral principal (a que tem a cola
         //para pegar os insetos).
@@ -237,9 +237,9 @@ class VimusMachineOriente : public VimusMachineOpenGLObject
         //centro da teia
         PVector* centro;
 
-        static const int width = 1280;
+        static constexpr int width = 1280;
 
-        static const int height = 800;
+        static constexpr int height = 800;
 
         int ultimaConstrucao;
 
