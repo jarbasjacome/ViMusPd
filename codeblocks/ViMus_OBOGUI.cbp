@@ -37,7 +37,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="/usr/include" />
-			<Add directory="/usr/include/opencv" />
+			<Add directory="/usr/include/opencv4" />
 			<Add directory="/usr/include/AL" />
 			<Add directory="/usr/local/include/libfreenect" />
 			<Add directory="/usr/include/libfreenect" />

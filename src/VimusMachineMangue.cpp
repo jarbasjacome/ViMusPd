@@ -166,12 +166,12 @@ void VimusMachineMangue::update()
     try
     {
 
-        cvtColor(frame, frameGray, CV_BGR2GRAY);
+        cvtColor(frame, frameGray, COLOR_BGR2GRAY);
 
-        threshold( frameGray, frameThresh,  200, 255, CV_THRESH_BINARY);
+        threshold( frameGray, frameThresh,  200, 255, THRESH_BINARY);
 
         int numContours=0;
-        findContours(frameThresh, v, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+        findContours(frameThresh, v, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
         numContours = v.size();
         Point2f p;
 

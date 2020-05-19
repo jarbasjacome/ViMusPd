@@ -1,3 +1,11 @@
+# Este Makefile foi desenvolvido seguindo os seguintes tutoriais:
+# 
+# John Tsiombikas "Practical Makefiles, by example":
+# 	http://nuclear.mutantstargoat.com/articles/make/
+#
+# Darcamo (Fórums Ubuntu)
+#	https://www.mat.uc.pt/~pedro/lectivos/ProgramacaoOrientadaObjectos/tutorialMakefilesPT.pdf
+
 SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
@@ -12,7 +20,13 @@ LDFLAGS = -lGL -lglut -lGLU -lXxf86vm -lalut -lfreenect -lopenal \
 		  -lopencv_imgproc -lopencv_videoio -lboost_thread \
 		  -lboost_system -lpthread
 
-all : $(OBJDIR) $(EXEC)
+.PHONY: clean all pd
+
+all : $(OBJDIR) $(EXEC) pd
+
+pd :
+	cd ./pure-data/src; \
+	make -f makefile.gnu
 
 $(EXEC): $(obj)
 	test -d $(BINDIR) || mkdir -p $(BINDIR)
@@ -30,6 +44,5 @@ $(OBJDIR)/%.d: $(SRCDIR)/%.cpp
 $(OBJDIR):
 	test -d $(OBJDIR) || mkdir -p $(OBJDIR)
 
-.PHONY: clean
 clean:
 	rm -f $(EXEC) $(OBJDIR)/*.o $(OBJDIR)/*.d

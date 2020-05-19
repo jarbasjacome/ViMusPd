@@ -22,8 +22,8 @@
 
 #include "Configuration.h"
 
-#include "opencv/cv.h"
-#include "opencv/highgui.h"
+//#include "cv.h"
+#include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 
 

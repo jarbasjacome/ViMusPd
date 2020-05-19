@@ -231,7 +231,7 @@ void VimusMachineLanternaMagica::update()
                         currMeasure--;
                     }
                     this->sampleStartTimeMSecs = this->timeStamps[currVideo][currMeasure];
-                    this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
+                    this->video[currVideo].set(CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
                     this->audioSampler->setPlaybackPos(currVideo, this->sampleStartTimeMSecs/1000.0f);
                 }
                 // verifica se está no repeat_mode_groove e se o compasso atual é o último
@@ -248,19 +248,19 @@ void VimusMachineLanternaMagica::update()
                     }
                     currMeasure = 0;
                     this->sampleStartTimeMSecs = this->timeStamps[currVideo][currMeasure];
-                    this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
+                    this->video[currVideo].set(CAP_PROP_POS_MSEC, this->sampleStartTimeMSecs);
                     this->audioSampler->setPlaybackPos(currVideo, this->sampleStartTimeMSecs/1000.0f);
                 }
                 else
                 {
                     //this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->pastTimeMSecs);
-                    this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->audioSampler->getSecondOffset(currVideo)*1000);
+                    this->video[currVideo].set(CAP_PROP_POS_MSEC, this->audioSampler->getSecondOffset(currVideo)*1000);
                 }
             }
             else
             {
                 //this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->pastTimeMSecs);
-                this->video[currVideo].set(CV_CAP_PROP_POS_MSEC, this->audioSampler->getSecondOffset(currVideo)*1000);
+                this->video[currVideo].set(CAP_PROP_POS_MSEC, this->audioSampler->getSecondOffset(currVideo)*1000);
             }
         }
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2007-2015 Jarbas Jácome
+ * 23Copyright 2007-2015 Jarbas Jácome
  *
  * This file is part of ViMus.
  *

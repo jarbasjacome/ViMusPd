@@ -98,7 +98,7 @@ void VimusMachineCVThreshold::update()
     try
     {
         this->frame.data = (*this->ppInputData);
-        threshold(this->frame, this->frameDst, 220, 255, CV_THRESH_BINARY);
+        threshold(this->frame, this->frameDst, 220, 255, THRESH_BINARY);
         (*this->ppOutputData) = this->frameDst.data;
     }
     catch  (...)

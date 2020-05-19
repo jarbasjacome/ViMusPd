@@ -23,7 +23,7 @@ using namespace cv;
 using namespace std;
 
 /**
- * VimusCaptureOpenCV singleton object, to make it possible to
+ * VideoCaptureOpenCV singleton object, to make it possible to
  * to call non-static member functions to use in threads
  */
 VideoCaptureOpenCV* VideoCaptureOpenCV::vidCapOpenCvPtr =
@@ -194,8 +194,8 @@ void VideoCaptureOpenCV::grabThreadFunc()
             }
         }
 
-        int check;
-        IplImage img;
+//        int check;
+//        IplImage img;
 
         try
         {
@@ -204,8 +204,8 @@ void VideoCaptureOpenCV::grabThreadFunc()
                 if (vidCapOpenCvPtr->videoCapDevices[i] != NULL)
                 {
                     vidCapOpenCvPtr->videoCapDevices[i]->retrieve(frame[i], 0);
-                    img = frame[i];
-                    check = cvCheckArr(&img, 0, 0, 0);
+ //                   img = frame[i];
+ //                   check = cvCheckArr(&img, 0, 0, 0);
                     if (vidCapOpenCvPtr->swapBufferOn)
                     {
                         resize(vidCapOpenCvPtr->frame[i], vidCapOpenCvPtr->frameDstSwap[i], Size(VIDEO_WIDTH, VIDEO_HEIGHT),0,0, INTER_LINEAR);

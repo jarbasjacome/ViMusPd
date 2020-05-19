@@ -33,10 +33,6 @@ VimusGUICube :: VimusGUICube (const std::string& label, float posX, float posY, 
 		this->objects[i] = NULL;
 	}
 
-	this->numInputs = 0;
-    this->numOutputs = 0;
-	this->setPins (0, 0);
-
 	this->setLabel(label);
 
 	this->setSizeByLabel();
@@ -48,6 +44,11 @@ VimusGUICube :: VimusGUICube (const std::string& label, float posX, float posY, 
     this->posX = posXMini = posX;
     this->posY = posYMini = posY;
     this->posZ = posZMini = posZ;
+
+    this->numInputs = 0;
+    this->numOutputs = 0;
+	this->setPins (0, 0);
+
 
     rotationReset();
     setCurrentSide(SIDE_PATCH);
